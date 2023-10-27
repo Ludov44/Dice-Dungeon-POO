@@ -28,6 +28,9 @@ Les différentes interactions possibles avec le jeu devront être de pouvoir lan
 
 ## Architecture : 
 
+### Description générale :
+
+
 - Un Account contient des stats, un inventory.
 - Une Game contient des Rooms
 - Une Room contient  des Events
@@ -41,4 +44,9 @@ Les différentes interactions possibles avec le jeu devront être de pouvoir lan
 - Un Consommable possède des stats instantanées et sont à utilisation unique
 - Un Equipment possède des stats à long termes 
 
+
+### Aspects spécifiques : 
+
+- Une méthode d'Account qui permettra le changement d'Account en chaine de caractères dans un fichier 
+- Gestion de l'interface d'une partie et du lancement de parties
 
