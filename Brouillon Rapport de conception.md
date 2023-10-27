@@ -28,17 +28,17 @@ Les différentes interactions possibles avec le jeu devront être de pouvoir lan
 
 ## Architecture : 
 
-Un Account contient des stats, un inventory.
-Une Game contient des Rooms
-Une Room contient  des Events
-Une Room possède une difficulté
-Un Event est soit un Fight soit un Finding, soit une Escape
-Une Entity est soit un Monster soit un Character
-Une Entity contient des hp, une attackDamage, defense
-Un Monster possède un type
-Un Character possède un name
-Un Item est soit un Consommable soit un Equipable
-Un Consommable possède des stats instantanées et sont à utilisation unique
-Un Equipment possède des stats à long termes 
+- Un Account contient des stats, un inventory.
+- Une Game contient des Rooms
+- Une Room contient  des Events
+- Une Room possède une difficulté
+- Un Event est soit un Fight soit un Finding, soit une Escape
+- Une Entity est soit un Monster soit un Character
+- Une Entity contient des hp, une attackDamage, defense
+- Un Monster possède un type
+- Un Character possède un name
+- Un Item est soit un Consommable soit un Equipable
+- Un Consommable possède des stats instantanées et sont à utilisation unique
+- Un Equipment possède des stats à long termes 
 
 
