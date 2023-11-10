@@ -44,9 +44,14 @@ Les différentes interactions possibles avec le jeu devront être de pouvoir lan
 - Un Consommable possède des stats instantanées et sont à utilisation unique
 - Un Equipment possède des stats à long termes 
 
+### Interfaces:
+
+Pour notre projet, nous avons décidé d'interagir avec l'utilisateur via la console. L'interface console devra donc permettre la progression du joueur dans le donjon. On aura donc accès à une représentation graphique de la salle parcourue: cela incluera les combats(monstres et attributs associés), les marchands(produits vendus, possibilité de rachats), les sorties de salles et les coffres et leur contenu. En bas de la console, il y aura les attributs du joueur et les actions possibles sous forme de liste à choix comme par exemple l'accès à l'inventaire ou les actions de combats.
 
 ### Aspects spécifiques : 
 
-- Une méthode d'Account qui permettra le changement d'Account en chaine de caractères dans un fichier 
-- Gestion de l'interface d'une partie et du lancement de parties
+Parmis les fonctions particulières à programmer, il y en aura une permettant de faire une sauvegarde d'un compte joueur en enregistrant l'avancée dans un fichier texte que l'on pourra importer dans le jeu plus tard pour reprendre notre progression. Il y aura aussi la gestion de l'interface qui sera un peu plus délicate à coder que le reste.
+
+
+
 
