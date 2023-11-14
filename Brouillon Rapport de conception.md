@@ -31,19 +31,9 @@ Les différentes interactions possibles avec le jeu devront être de pouvoir lan
 ### Description générale :
 
 
-- Un Account contient des stats, un inventory.
-- Une Game contient des Rooms
-- Une Room contient  des Events
-- Une Room possède une difficulté
-- Un Event est soit un Fight soit un Finding, soit une Escape
-- Une Entity est soit un Monster soit un Character
-- Une Entity contient des hp, une attackDamage, defense
-- Un Monster possède un type
-- Un Character possède un name
-- Un Item est soit un Consommable soit un Equipable
-- Un Consommable possède des stats instantanées et sont à utilisation unique
-- Un Equipment possède des stats à long termes 
-
+Un Account possède des Stats et un Inventory (qui sont propres à l'utilisateur).
+C'est l'utilisateur qui lance une Game. Chaque Game  comporte plusieurs Rooms. Une Room contient  des Event et se voit attribuée une difficulté; Un Event peut être un Fight (un combat) , une Finding (un marchand) ou une Escape (permettant de sortir du jon). Une Entity est soit un Monster soit un Character. Le Character se déplace de Room en Room. Une Entity possède des hp, une attackDamage et une Defense. Parmi les Entity, le type Character possède un Name tandis que le type Monster a un Type. L'utilisateur peut avoir avec lui des objets de type Equipable. Les Equipable sont soit des Consommable, soit des Equipment. La différence étant que Un Consommable possède des stats instantanées et sont à utilisation unique, tandis que Un Equipment possède des stats à long termes 
+.
 ### Interfaces:
 
 Pour notre projet, nous avons décidé d'interagir avec l'utilisateur via la console. L'interface console devra donc permettre la progression du joueur dans le donjon. On aura donc accès à une représentation graphique de la salle parcourue: cela incluera les combats(monstres et attributs associés), les marchands(produits vendus, possibilité de rachats), les sorties de salles et les coffres et leur contenu. En bas de la console, il y aura les attributs du joueur et les actions possibles sous forme de liste à choix comme par exemple l'accès à l'inventaire ou les actions de combats.
