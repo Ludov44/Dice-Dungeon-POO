@@ -31,7 +31,7 @@ Les différentes interactions possibles avec le jeu devront être de pouvoir lan
 ### Description générale :
 
 Un Account possède des Stats et un Inventory (qui sont propres à l'utilisateur).
-C'est l'utilisateur qui lance une Game. Chaque Game  comporte plusieurs Rooms. Une Room contient  des Event et se voit attribuée une difficulté; Un Event peut être un Fight (un combat) , une Finding (un marchand) ou une Escape (permettant de sortir du jon). Une Entity est soit un Monster soit un Character. Le Character se déplace de Room en Room. Une Entity possède des hp, une attackDamage et une Defense. Parmi les Entity, le type Character possède un Name tandis que le type Monster a un Type. L'utilisateur peut avoir avec lui des objets de type Equipable. Les Equipable sont soit des Consommable, soit des Equipment. La différence étant que Un Consommable possède des stats instantanées et sont à utilisation unique, tandis que Un Equipment possède des stats à long termes.
+C'est l'utilisateur qui lance une Game. Chaque Game  comporte plusieurs Rooms. Une Room contient  des Event et se voit attribuée une difficulté; Un Event peut être un Fight (un combat) , une Finding (un marchand) ou une Escape (permettant de sortir du donjon). Une Entity est soit un Monster soit un Character. Le Character se déplace de Room en Room. Une Entity possède des hp, une attackDamage et une Defense. Parmi les Entity, le type Character possède un Name tandis que le type Monster a un Type. L'utilisateur peut avoir avec lui des objets de type Equipable. Les Equipable sont soit des Consommable, soit des Equipment. La différence étant que Un Consommable possède des stats instantanées et sont à utilisation unique, tandis que Un Equipment possède des stats à long termes.
 
 ### Interfaces:
 
