@@ -53,9 +53,13 @@ public class Room{
         }
     }
 
-    public void quit(){
+    public void quit(Avatar player){
         if(this.escape_found){
-            //TODO sortir de la room
+            int positionEvent = 0;
+            while(this.events.get(positionEvent).getId != 3 ){
+                positionEvent++;
+            }
+            this.events.get(positionEvent).trigger(player);
         }else{
             System.out.println("Vous n'avez pas encore trouvé la sortie!");
         }
