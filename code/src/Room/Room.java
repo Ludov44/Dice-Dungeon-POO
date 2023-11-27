@@ -1,6 +1,10 @@
-import Event;
+package Room;
+import Events.Event;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import Entity.Avatar;
 
 
 
@@ -29,10 +33,10 @@ public class Room{
     public void setEvents(ArrayList<Event> events_list){
         this.events = events_list;
     }
-
+    //Prends un événement dans la liste et le déclenche
     public void explore(Avatar player){
         if(this.events.size() == 1){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
-            
+            this.events.get(1).trigger(player);
         }
         else{ //Sinon on tire un élément au hasard dans la room
             Random randomNumber = new Random();
@@ -45,7 +49,7 @@ public class Room{
                 this.events.get(eventNumber).trigger(player);
             }
 
-            if(this.events.get(eventNumber).getId() == 3){ //Si on a trouvé la sortie, on la déplace à la fin de la liste
+            if(this.events.get(eventNumber).getId() == 4){ //Si on a trouvé la sortie, on la déplace à la fin de la liste
                 this.events.add(this.events.get(eventNumber));
                 this.events.remove(eventNumber);
                 
@@ -55,11 +59,7 @@ public class Room{
 
     public void quit(Avatar player){
         if(this.escape_found){
-            int positionEvent = 0;
-            while(this.events.get(positionEvent).getId != 3 ){
-                positionEvent++;
-            }
-            this.events.get(positionEvent).trigger(player);
+            this.events.get(this.events.size()).trigger(player);
         }else{
             System.out.println("Vous n'avez pas encore trouvé la sortie!");
         }
