@@ -1,0 +1,54 @@
+{
+    "arme": [
+    
+    {
+        "name": "épée",
+        "price": 10,
+        "bonus": 10
+        
+    },
+    {
+        "name": "hache",
+        "price": 20,
+        "bonus": 15  
+    },
+
+    {
+        "name": "dague",
+        "price": 5,
+        "bonus": 5
+    },
+
+    {
+        "name": "lance",
+        "price": 15,
+        "bonus": 12
+    }
+    ],
+    "armor":[
+    {
+        "name":"armure en cuir",
+        "price": 5,
+        "bonus": 4
+    },
+
+    {
+        "name":"armure en fer",
+        "price": 10,
+        "bonus": 6
+    },
+
+    {
+        "name": "armure en or",
+        "price": 15,
+        "bonus": 8
+    },
+
+    {
+        "name": "armure en diamant",
+        "price": 20,
+        "bonus": 12
+    }
+]
+
+}
