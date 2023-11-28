@@ -11,25 +11,27 @@ import java.lang.Math;                          // Permet de générer un nombre
 import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
 
 public class Chest implements Event {
-   private int money;
+   private int money;                          
    private ArrayList<Item> items;
    private final static int id = 1;             // Permet d'identifier les Events dans Room
    private final static int baseReward = 8;     // Permet de modifier rapidement les récompense de monnaie des coffres
 
    
    /**
-    * 
+    * Constructeur de la classe Chest.
+    * Il créé la liste d'item et remplit le coffre en suivant certaines probabilités ( décrites dans le commentaire de la méthode fill )
     */
    public Chest()
    {
       //Début
          this.items = new ArrayList<Item>();
          this.fill();
-      //Fin
+      //Fin));                  // sélectionne un troisième item
+      items.add(allItem.get(ind));  
    }
    /**
-    * 
-    * @return
+    * Getter de l'attribut money
+    * @return la monnaie du coffre sous forme d'Entier
     */
    public int getMoney()
    {
@@ -38,6 +40,10 @@ public class Chest implements Event {
       //Fin
    }
 
+   /**
+    * Getter de l'attribut items
+    * @return la liste d'Item "items"
+    */
    public ArrayList<Item> getItems()
    {
       //Début
@@ -45,6 +51,10 @@ public class Chest implements Event {
       //Fin
    }
 
+   /**
+    * Setter de l'attribut money
+    * @param newMoney nouvelle valeur de this.money ( remplace sans additionner)
+    */
    public void setMoney(int newMoney)
    {
       //Début
@@ -53,6 +63,11 @@ public class Chest implements Event {
    }
 
    @Override
+   /*
+    * Getter de l'Id de cet Event
+    * @return un entier représentant identifiant de l'event chest, ici 1
+    */
+
    public int getId()
    {
       //Début
@@ -61,12 +76,18 @@ public class Chest implements Event {
    }
 
    
-    public void fill
-    {
-        //Variables
+   /**
+    * Remplit un Chest selon les probabilités suivantes : 
+    * - 25% d'avoir 8 coins et 0 item
+    * - 35% d'avoir 6 coins et 1 item
+    * - 30% d'avoir 4 coins et 2 items
+    * - 10% d'avoir 0 coin et 3 items
+    * Pour cela il génère un nombre aléatoire entre 0 et 1 grace a "Math.random()", puis le multiplie au nombre d'items dans le jeu.
+    */));                  // sélectionne un troisième item
+    items.add(allItem.get(ind));  
         ArrayList<Item> allItem;
-        double dice = Math.random();
-        int ind = (int)(dice*allItem.size());
+        double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
+        int ind = (int)(dice*allItem.size());                     // Choisit aléatoirement un premier item 
         Object ob = new JsonParser().parse(new FileReader("Items.json"))
 
         //Début
@@ -74,35 +95,36 @@ public class Chest implements Event {
          FileReader("Items.json")
             allItems.add();
 
-         if (dice < 0.25)
+         if (dice < 0.25)                                         // coffre contenant 8 coins et 0 item : 25% de probabilités
          {
-            setMoney(baseReward); 
+            setMoney(baseReward);                              // Attribue 8 coins a ce coffre
          }
-         else if(dice < 0.60)
+         else if(dice < 0.60)                                     // coffre contenant 6 coins et 1 item : 35% de probabilités
          {
-            setMoney((int)(baseReward*0.75));
-            items.add(allItem.get(ind));
+            setMoney((int)(baseReward*0.75));                  // Attribue 6 coins à ce coffre
+            items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
          }
-         else if(dice < 0.90)
+         else if(dice < 0.90)                                     // coffre contenant 4 coins et 2 items : 30% de probabilités
          {
-            setMoney((int)(baseReward*0.5));
-            items.add(allItem.get(ind));
+            setMoney((int)(baseReward*0.5));                   // Attribue 4 coins à ce coffre
+            items.add(allItem.get(ind));   ));                  // sélectionne un troisième item
+            items.add(allItem.get(ind));                      // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+
+            dice = Math.random();                              
+            ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
+            items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         }
+         else                                                     // coffre contenant 0 coins et 3 items : 10% de probabilités
+         {
+            items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
 
             dice = Math.random();
-            ind = (int)(dice*allItem.size());
-            items.add(allItem.get(ind));
-         }
-         else
-         {
-            items.add(allItem.get(ind));
+            ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
+            items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
 
             dice = Math.random();
-            ind = (int)(dice*allItem.size());
-            items.add(allItem.get(ind));
-
-            dice = Math.random();
-            ind = (int)(dice*allItem.size());
-            items.add(allItem.get(ind));
+            ind = (int)(dice*allItem.size());                  // sélectionne un troisième item
+            items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
          //Fin
          }
    }
@@ -110,28 +132,34 @@ public class Chest implements Event {
     
 
     @Override
+
+    /*
+     * Méthode déclencheuse de l'Event Chest, implémentation de l'interface Event.
+     * Elle ajoute les coins et items a l'inventaire de l'avatar si il décide de l'ouvrir
+     * @param player Avatar de l'utilisateur pour la partie en cours
+     */
     public void trigger(Avatar player){
       //Variables
       Scanner clavier = new Scanner(System.in);
       String choix;
       // Début
-      System.out.println("Vous avez trouvé un coffre !"); 
-      System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon"); 
-      choix = clavier.nextLine();
-      if(choix == "o" || choix == "O" )
+      System.out.println("Vous avez trouvé un coffre !");                                          // Affichage utilisateur
+      System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");                        // Proposition utilisateur
+      choix = clavier.nextLine();                                                                    // Lecture de la réponse de l'utilisateur
+      if(choix == "o" || choix == "O" )                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
-         if (this.getMoney() > 0) {
-            System.out.println("Vous avez trouvé " + this.getMoney() +  " coins dans le coffre");
-            player.getInv().changeMoney(this.getMoney());
+         if (this.getMoney() > 0) {                                                                  
+            System.out.println("Vous avez trouvé " + this.getMoney() +  " coins dans le coffre");    // Affichage utilisateur pour les coins
+            player.getInv().changeMoney(this.getMoney());                                            // Ajoute la money à l'inventaire de l'avatar
          }
          for (Item item : items) {
-            System.out.println("\t - Item trouvé :" + item.toString());
-            player.getInv().addItem(item);
+            System.out.println("\t - Item trouvé :" + item.toString());                              // Affichage utilisateur pour les items
+            player.getInv().addItem(item);                                                           // Ajoute les items à l'inventaire de l'avatar
          }
       }
       else 
       {
-         System.out.println("Le coffre est abandonné");
+         System.out.println("Le coffre est abandonné");                                            // Affichage utilisateur
       }
       clavier.close();
       //Fin
