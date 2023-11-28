@@ -83,50 +83,50 @@ public class Chest implements Event {
     * - 30% d'avoir 4 coins et 2 items
     * - 10% d'avoir 0 coin et 3 items
     * Pour cela il génère un nombre aléatoire entre 0 et 1 grace a "Math.random()", puis le multiplie au nombre d'items dans le jeu.
-    */));                  // sélectionne un troisième item
-    items.add(allItem.get(ind));  
-        ArrayList<Item> allItem;
-        double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
-        int ind = (int)(dice*allItem.size());                     // Choisit aléatoirement un premier item 
-        Object ob = new JsonParser().parse(new FileReader("Items.json"))
+    */
+    public void fill()
+    {
+      ArrayList<Item> allItem;
+      double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
+      int ind = (int)(dice*allItem.size());                    // Choisit aléatoirement un premier item 
+      Object ob = new JsonParser().parse(new FileReader("Items.json"));
 
-        //Début
+      //Début
 
-         FileReader("Items.json")
-            allItems.add();
+      FileReader("Items.json")
+         allItems.add();
 
-         if (dice < 0.25)                                         // coffre contenant 8 coins et 0 item : 25% de probabilités
-         {
-            setMoney(baseReward);                              // Attribue 8 coins a ce coffre
-         }
-         else if(dice < 0.60)                                     // coffre contenant 6 coins et 1 item : 35% de probabilités
-         {
-            setMoney((int)(baseReward*0.75));                  // Attribue 6 coins à ce coffre
-            items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
-         }
-         else if(dice < 0.90)                                     // coffre contenant 4 coins et 2 items : 30% de probabilités
-         {
-            setMoney((int)(baseReward*0.5));                   // Attribue 4 coins à ce coffre
-            items.add(allItem.get(ind));   ));                  // sélectionne un troisième item
-            items.add(allItem.get(ind));                      // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+      if (dice < 0.25)                                         // coffre contenant 8 coins et 0 item : 25% de probabilités
+      {
+         setMoney(baseReward);                              // Attribue 8 coins a ce coffre
+      }
+      else if(dice < 0.60)                                     // coffre contenant 6 coins et 1 item : 35% de probabilités
+      {
+         setMoney((int)(baseReward*0.75));                  // Attribue 6 coins à ce coffre
+         items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+      }
+      else if(dice < 0.90)                                     // coffre contenant 4 coins et 2 items : 30% de probabilités
+      {
+         setMoney((int)(baseReward*0.5));                   // Attribue 4 coins à ce coffre
+         items.add(allItem.get(ind));                      // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
 
-            dice = Math.random();                              
-            ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
-            items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
-         }
-         else                                                     // coffre contenant 0 coins et 3 items : 10% de probabilités
-         {
-            items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+         dice = Math.random();                              
+         ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
+         items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+      }
+      else                                                     // coffre contenant 0 coins et 3 items : 10% de probabilités
+      {
+         items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
 
-            dice = Math.random();
-            ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
-            items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         dice = Math.random();
+         ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
+         items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
 
-            dice = Math.random();
-            ind = (int)(dice*allItem.size());                  // sélectionne un troisième item
-            items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
-         //Fin
-         }
+         dice = Math.random();
+         ind = (int)(dice*allItem.size());                  // sélectionne un troisième item
+         items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+      //Fin
+      }
    }
 
     
