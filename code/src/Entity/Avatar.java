@@ -1,43 +1,47 @@
 package Entity;
 
+import Entity.Entity;
+import java.lang.Math;
+
 public class Avatar extends Entity {
-   private String name;
    private int maxHP;
+   private String name;
+   private Inventory stock;
 
-   /**
-    * @param name
-    * @param HP
-    * @param attack
-    * @param defense
-    */
-   public Avatar (String name, int HP, int attack, int defense) {
-      super (HP, attack, defense);
+   public Avatar (String name, int HP, int attack, int defense, Inventory stock) {
+      super(HP, attack, defense);
+      this.maxHP = HP;     //on initialise un Avatar avec tous ses PV
       this.name = name;
-      this.maxHP = HP;
+      this.stock = stock;
    }
-
    public int getMaxHP() {
       return this.maxHP;
    }
 
-   public String getName() {
-      return name;
+   public void setMaxHP(int nb) {
+      this.maxHP = nb;       
    }
 
-   @Override
-   public int getAttackPower() {
-        double attackEfficiency = (Math.random() % 0.1); 
-        return (
-            (int) Math.round(
-                super.getAttackPower() * 
-                (1 + attackEfficiency)
-                )
-        );
+   public String getName() {
+      return this.name;
    }
-   
-/*
-attackEfficiency prend une valeur dans { 0,1 ; 0,2 ; ... ; 0,9}
-l'avatar a donc pour puissance d'attaque  entre 100% et 200% de son 
-attaque
-*/
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public int getStockMoney() {
+      return this.stock.money;
+   }
+
+   public void addMoney(int nb) {
+      this.stock.money = this.stock.money + nb;
+   }
+
+   @override
+   public int getAttackPower() {
+      double attackEfficiency = Math.random() % 0.1;
+
+      return ((this.attack * (1 + attackEfficiency)) % 1);
+   }
 }
