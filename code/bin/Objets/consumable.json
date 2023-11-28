@@ -1,0 +1,40 @@
+{
+    "Soin": [
+    {
+        "name": "bandage",
+        "effect": 5
+    },
+    {
+        "name": "petite potion de soin",
+        "effect": 10
+        
+    },
+    {
+        "name": "potion de soin",
+        "effect": 15  
+    },
+
+    {
+        "name": "grosse potion de soin",
+        "effect": 20
+    }
+    ],
+    "force": [
+        {
+            "name": "petite potion de force",
+            "effect": 0.2
+        },
+
+        {
+            "name": "potion de force",
+            "effect": 0.4
+        },
+
+        {
+            "name": "grosse potion de force",
+            "effect": 0.6
+        }
+    ]
+
+
+}
