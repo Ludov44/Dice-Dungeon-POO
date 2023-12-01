@@ -1,11 +1,15 @@
-public Class StrenghtConsumable extends Consumable{
+package Item;
+
+import Entity.Avatar;
+
+public class StrenghtConsumable extends Consumable{
     
 
-    public strenghtConsumable(int h, string n, int p){
+    public StrenghtConsumable(int h, String n, int p){
         if(this.effect < 1 || this.effect > 0){
             super(n, h, p);
         }
-        else{throw new IllegalArgumentException("l'effect de force doit être entre 0 et 1")}
+        else{throw new IllegalArgumentException("l'effect de force doit être entre 0 et 1");}
     }
 
     

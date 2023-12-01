@@ -1,45 +1,37 @@
-public abstract Class Equipement implements Item{
-    private string name;
+package Item;
+
+import Entity.Avatar;
+
+public abstract class Equippable implements Item{
+    private String name;
     private int price;
     private int bonus;
     private boolean isEquip;
 
-    public equipement(string nom, int prix, int b){
+    public Equippable(String nom, int prix, int b){
         this.name = nom;
         this.price = prix;
         this.bonus = b;
-        this.isEquip = false
+        this.isEquip = false;
     }
 
-    public getName(){
+    public String getName(){
         return this.name;
     }
 
-    public getPrice(){
+    public int getPrice(){
         return this.price;
     }
 
-    public getBonus(){
+    public int getBonus(){
         return this.bonus;
     }
 
-    public getIsEquip(){
+    public boolean getIsEquip(){
         return this.isEquip;
     }
 
-    public setName(string nom){
-        this.name = nom;
-    }
-
-    public setPrice(int prix){
-        this.price = prix;
-    }
-
-    public setBonus(int b){
-        this.bonus = b
-    }
-
-    public setIsEquip(boolean bool){
+    public void setIsEquip(boolean bool){
         this.isEquip = bool;
     }
 
