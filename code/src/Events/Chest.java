@@ -2,11 +2,8 @@ package Events;
 
 import Entity.Avatar;
 import Item.Item;
-
 import java.util.ArrayList;                     // Permet l'utilisation des listes
 import java.io.FileReader;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
 import java.lang.Math;                          // Permet de générer un nombre random entre 0 et 1
 import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
 
@@ -26,20 +23,10 @@ public class Chest implements Event {
       //Début
          this.items = new ArrayList<Item>();
          this.fill();
-      //Fin));                  // sélectionne un troisième item
-      items.add(allItem.get(ind));  
+      //Fin 
    }
    /**
-    * Getter de l'attribut money
-    * @return la monnaie du coffre sous forme d'Entier
-    */
-   public int getMoney()
-   {
-      //Début
-         return money;
-      //Fin
-   }
-
+    * Getter de l'attribut moneyallItem
    /**
     * Getter de l'attribut items
     * @return la liste d'Item "items"
@@ -60,6 +47,15 @@ public class Chest implements Event {
       //Début
          money = newMoney;
       //Fin
+   }
+
+   /**
+    * Getter de l'attribut money
+    * @return la monnaie du coffre, sous forme d'entier.
+    */
+   public int getMoney()
+   {
+      return money;
    }
 
    @Override
@@ -86,15 +82,12 @@ public class Chest implements Event {
     */
     public void fill()
     {
-      ArrayList<Item> allItem;
+      ArrayList<Item> allItems = Item.allObjects;
       double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
-      int ind = (int)(dice*allItem.size());                    // Choisit aléatoirement un premier item 
-      Object ob = new JsonParser().parse(new FileReader("Items.json"));
+      int ind = (int)(dice*allItems.size());                    // Choisit aléatoirement un premier item 
+  ;
 
       //Début
-
-      FileReader("Items.json")
-         allItems.add();
 
       if (dice < 0.25)                                         // coffre contenant 8 coins et 0 item : 25% de probabilités
       {
@@ -103,28 +96,28 @@ public class Chest implements Event {
       else if(dice < 0.60)                                     // coffre contenant 6 coins et 1 item : 35% de probabilités
       {
          setMoney((int)(baseReward*0.75));                  // Attribue 6 coins à ce coffre
-         items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+         items.add(allItems.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
       }
       else if(dice < 0.90)                                     // coffre contenant 4 coins et 2 items : 30% de probabilités
       {
          setMoney((int)(baseReward*0.5));                   // Attribue 4 coins à ce coffre
-         items.add(allItem.get(ind));                      // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+         items.add(allItems.get(ind));                      // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
 
          dice = Math.random();                              
-         ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
-         items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         ind = (int)(dice*allItems.size());                  // sélectionne un nouvel item
+         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
       }
       else                                                     // coffre contenant 0 coins et 3 items : 10% de probabilités
       {
-         items.add(allItem.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+         items.add(allItems.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
 
          dice = Math.random();
-         ind = (int)(dice*allItem.size());                  // sélectionne un nouvel item
-         items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         ind = (int)(dice*allItems.size());                  // sélectionne un nouvel item
+         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
 
          dice = Math.random();
-         ind = (int)(dice*allItem.size());                  // sélectionne un troisième item
-         items.add(allItem.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         ind = (int)(dice*allItems.size());                  // sélectionne un troisième item
+         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
       //Fin
       }
    }
@@ -141,11 +134,15 @@ public class Chest implements Event {
     public void trigger(Avatar player){
       //Variables
       Scanner clavier = new Scanner(System.in);
-      String choix;
+      String choix = "";
       // Début
-      System.out.println("Vous avez trouvé un coffre !");                                          // Affichage utilisateur
-      System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");                        // Proposition utilisateur
-      choix = clavier.nextLine();                                                                    // Lecture de la réponse de l'utilisateur
+      while (choix!="O" || choix != "o"|| choix != "N" || choix != "n") {
+         System.out.println("Vous avez trouvé un coffre !");                                          // Affichage utilisateur
+         System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");        // Proposition utilisateur
+         choix = clavier.nextLine();    // Lecture de la réponse de l'utilisateur
+      }
+                            // Proposition utilisateur
+                                                                     
       if(choix == "o" || choix == "O" )                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
          if (this.getMoney() > 0) {                                                                  

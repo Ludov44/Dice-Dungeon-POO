@@ -34,29 +34,36 @@ public class Room{
         this.events = events_list;
     }
     //Prends un événement dans la liste et le déclenche
-    public void explore(Avatar player){
+    public boolean explore(Avatar player){
         if(this.events.size() == 1){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
-            this.events.get(1).trigger(player);
+            if(!this.escape_found){
+                this.events.get(1).trigger(player);
+                this.escape_found = true;
+            }
+            return false;
         }
         else{ //Sinon on tire un élément au hasard dans la room
             Random randomNumber = new Random();
             int eventNumber;
-            if(this.escape_found){ //Si la sortie a été trouvé, on on ne regarde pas le dernier Event de la liste car c'est forcément la sortie
+
+            if(this.escape_found){ //Si la sortie a été trouvé, on ne regarde pas le dernier Event de la liste car c'est forcément la sortie
                 eventNumber = (randomNumber.nextInt(this.events.size()-1));
-                this.events.get(eventNumber).trigger(player);
             }else{
                 eventNumber = (randomNumber.nextInt(this.events.size()));
-                this.events.get(eventNumber).trigger(player);
             }
 
             if(this.events.get(eventNumber).getId() == 4){ //Si on a trouvé la sortie, on la déplace à la fin de la liste
+                this.escape_found = true;
                 this.events.add(this.events.get(eventNumber));
                 this.events.remove(eventNumber);
+                eventNumber = this.events.size();
                 
             }
+            this.events.get(eventNumber).trigger(player);
+            return true;
         }
     }
-
+    /*
     public void quit(Avatar player){
         if(this.escape_found){
             this.events.get(this.events.size()).trigger(player);
@@ -66,6 +73,7 @@ public class Room{
 
 
     }
+     */
 
 }
 

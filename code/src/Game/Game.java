@@ -6,6 +6,8 @@ import Room.Room;
 import Events.*;
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.Scanner;  
+
 
 public class Game {
     private int room_nb;
@@ -54,15 +56,36 @@ public class Game {
 
     public void enter_room(){
         this.create_room();
-        this.active_room.explore(this.player);
-        // TODO
-        this.active_room.quit(this.player);
+        boolean inProgress = true;
+        while(inProgress){
+
+            inProgress = this.active_room.explore(this.player);
+
+            if(this.active_room.getEscape() && inProgress){
+                System.out.println("Voulez-vous sortir de la salle ou continuer à explorer");
+                Scanner clavier = new Scanner(System.in);
+                String choix = "";
+        
+                while (choix!="O" || choix != "o"|| choix != "N" || choix != "n") {
+                    System.out.println("Taper O si vous voulez passer à l'étage suivant, Tapez N sinon");        // Proposition utilisateur
+                choix = clavier.nextLine();    
+                }
+                if(choix == "o" || choix == "O" ) {                                                   // Vérifie que l'utilisateur souhaite quitter la room
+                    inProgress = false;
+                }
+                else 
+                {
+                   System.out.println("Vous continuez d'explorer l'étage");                                            // Affichage utilisateur
+                }
+                clavier.close();
+            }
+
+        }
     }
 
     public int getRoom_nb() {
         return room_nb;
     }
-
     public void setRoom_nb(int room_nb) {
         this.room_nb = room_nb;
     }
