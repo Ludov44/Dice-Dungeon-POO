@@ -1,44 +1,48 @@
-package Item;
-
-import Entity.Avatar;
-
-public class Equippable implements Item {
-    private int value;
+public abstract Class Equipement implements Item{
+    private string name;
+    private int price;
     private int bonus;
-    private String name;
+    private boolean isEquip;
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public int getBonus() {
-        return bonus;
+    public equipement(string nom, int prix, int b){
+        this.name = nom;
+        this.price = prix;
+        this.bonus = b;
+        this.isEquip = false
     }
 
-    public void setBonus(int bonus) {
-        this.bonus = bonus;
+    public getName(){
+        return this.name;
     }
 
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
+    public getPrice(){
+        return this.price;
     }
 
-    public void unuse(Avatar player) {
-        // TODO
+    public getBonus(){
+        return this.bonus;
     }
 
-    @Override
-    public void use(Avatar player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'use'");
+    public getIsEquip(){
+        return this.isEquip;
     }
-    
+
+    public setName(string nom){
+        this.name = nom;
+    }
+
+    public setPrice(int prix){
+        this.price = prix;
+    }
+
+    public setBonus(int b){
+        this.bonus = b
+    }
+
+    public setIsEquip(boolean bool){
+        this.isEquip = bool;
+    }
+
+    public abstract void unuse(Avatar player);
+        
 }
