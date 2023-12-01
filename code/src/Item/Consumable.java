@@ -1,4 +1,4 @@
-public Class Consumable implements Item{
+public abstract Class Consumable implements Item{
     private string name;
     private int effect;
     private int price;
