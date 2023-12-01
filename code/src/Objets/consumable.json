@@ -2,37 +2,45 @@
     "Soin": [
     {
         "name": "bandage",
-        "effect": 5
+        "effect": 5,
+        "price": 1
+        
     },
     {
         "name": "petite potion de soin",
-        "effect": 10
+        "effect": 10,
+        "price": 2
         
     },
     {
         "name": "potion de soin",
-        "effect": 15  
-    },
+        "effect": 15 ,
+        "price": 5
+        },
 
     {
         "name": "grosse potion de soin",
-        "effect": 20
-    }
+        "effect": 20,
+        "price": 10    }
     ],
     "force": [
         {
             "name": "petite potion de force",
-            "effect": 0.2
+            "effect": 0.2,
+            "price": 5
+            
         },
 
         {
             "name": "potion de force",
-            "effect": 0.4
+            "effect": 0.4,
+            "price": 10
         },
 
         {
             "name": "grosse potion de force",
-            "effect": 0.6
+            "effect": 0.6,
+            "price": 15
         }
     ]
 

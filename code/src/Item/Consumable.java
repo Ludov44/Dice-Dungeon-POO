@@ -1,13 +1,36 @@
-package Item;
+public abstract Class Consumable implements Item{
+    private string name;
+    private int effect;
+    private int price;
 
-import Entity.Avatar;
+    public consumable(string n, int e, int p){
+        this.name = n;
+        this.effect = e;
+        this.price = p;
+    }
 
-public class Consumable implements Item {
+    public string getConsumable(){
+        return this.name;
+    }
 
-    @Override
-    public void use(Avatar player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'use'");
+    public string setConsumable(string n){
+        this.name = n;
+    }
+
+    public getEffect(){
+        return this.effect;
     }
     
+    public setEffect(int v){
+        this.effect = v;
+    }
+
+    public setPrice(int pr){
+        this.price = pr;
+    }
+
+    public getPrice(){
+        return this.price;
+    }
+
 }
