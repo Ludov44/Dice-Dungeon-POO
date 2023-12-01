@@ -3,17 +3,19 @@ package Events;
 import Entity.Avatar;
 
 public class Escape implements Event {
+    private final static int id = 4;
+
+
 
     @Override
     public void trigger(Avatar player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'trigger'");
+        System.out.println("Vous avez trouvé la sortie !");                                          // Affichage utilisateur
     }
 
     @Override
     public int getId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+        return Escape.id;
     }
     
 }
+

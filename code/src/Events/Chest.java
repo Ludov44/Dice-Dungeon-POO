@@ -134,11 +134,15 @@ public class Chest implements Event {
     public void trigger(Avatar player){
       //Variables
       Scanner clavier = new Scanner(System.in);
-      String choix;
+      String choix = "";
       // Début
-      System.out.println("Vous avez trouvé un coffre !");                                          // Affichage utilisateur
-      System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");                        // Proposition utilisateur
-      choix = clavier.nextLine();                                                                    // Lecture de la réponse de l'utilisateur
+      while (choix!="O" || choix != "o"|| choix != "N" || choix != "n") {
+         System.out.println("Vous avez trouvé un coffre !");                                          // Affichage utilisateur
+         System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");        // Proposition utilisateur
+         choix = clavier.nextLine();    // Lecture de la réponse de l'utilisateur
+      }
+                            // Proposition utilisateur
+                                                                     
       if(choix == "o" || choix == "O" )                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
          if (this.getMoney() > 0) {                                                                  
