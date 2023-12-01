@@ -1,4 +1,4 @@
-public Class Equipement implements Item{
+public abstract Class Equipement implements Item{
     private string name;
     private int price;
     private int bonus;
