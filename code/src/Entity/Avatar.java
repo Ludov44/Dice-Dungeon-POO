@@ -31,11 +31,11 @@ public class Avatar extends Entity {
    }
 
    public int getStockMoney() {
-      return this.stock.money;
+      return this.stock.getMoney();
    }
 
-   public void addMoney(int nb) {
-      this.stock.money = this.stock.money + nb;
+   public void changeMoney(int nb) {
+      this.stock.setMoney(this.stock.getMoney() + nb);
    }
 
    @override

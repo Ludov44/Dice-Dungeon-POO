@@ -85,7 +85,6 @@ public class Chest implements Event {
       ArrayList<Item> allItems = Item.allObjects;
       double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
       int ind = (int)(dice*allItems.size());                    // Choisit aléatoirement un premier item 
-  ;
 
       //Début
 
@@ -141,7 +140,6 @@ public class Chest implements Event {
          System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");        // Proposition utilisateur
          choix = clavier.nextLine();    // Lecture de la réponse de l'utilisateur
       }
-                            // Proposition utilisateur
                                                                      
       if(choix == "o" || choix == "O" )                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
