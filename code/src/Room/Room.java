@@ -92,8 +92,6 @@ public class Room{
         }else{
             System.out.println("Vous n'avez pas encore trouvé la sortie!");
         }
-
-
     }
      */
 

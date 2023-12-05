@@ -1,6 +1,7 @@
 package Events;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Entity.Avatar;
 import Entity.Monster;
@@ -71,15 +72,39 @@ public class Fight implements Event {
     @Override
     public void trigger(Avatar player) {
         Monster currentMonster;
-        currentMonster = this.enemies.get(0);
 
-        while(this.enemies.size() !=0){
-            while(currentMonster.getHP() > 0 || player.getHP() > 0){
+        int playerRoll = 0;
+        int monsterRoll = 0;
+        
+
+        while(this.enemies.size() !=0 && player.getHP() > 0){
+            currentMonster = this.enemies.get(0);
+
+            while(currentMonster.getHP() > 0 && player.getHP() > 0){
+                currentMonster = this.enemies.get(0);
+
+                do{
+                    playerRoll = (int)(Math.random()*6 + 1);
+                    monsterRoll = (int)(Math.random()*6 + 1);
+                }while(playerRoll == monsterRoll);
+                
+                if(playerRoll<monsterRoll){
+                    player.setHP(currentMonster.getAttackPower());
+                    System.out.println("Vous subissez " + currentMonster.getAttackPower() + " dégâts");
+
+                }else{
+                    currentMonster.setHP(player.getAttackPower());
+                }
 
             }
+            this.enemies.remove(0);
+            
+
         }
 
     }
+
+
 
     @Override
     public int getId() {
