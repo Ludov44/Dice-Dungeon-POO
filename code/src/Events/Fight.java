@@ -70,7 +70,15 @@ public class Fight implements Event {
 
     @Override
     public void trigger(Avatar player) {
-        
+        Monster currentMonster;
+        currentMonster = this.enemies.get(0);
+
+        while(this.enemies.size() !=0){
+            while(currentMonster.getHP() > 0 || player.getHP() > 0){
+
+            }
+        }
+
     }
 
     @Override

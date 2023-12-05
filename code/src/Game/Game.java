@@ -21,13 +21,16 @@ public class Game {
         this.player = player;
         this.room_nb = 0;
     }
-
+    /*
+     * Créer une room en remplissant une liste d'event aléatoirement
+     * Chaque room possède une sortie et possiblement des combats, des chests et des marchands
+     */
     private void create_room(){
         this.room_nb += 1;
         double randomNumber = Math.random();
         int roomSize = 4 + (int)(randomNumber*2);
-        ArrayList<Event> newEventList;
-
+        ArrayList<Event> newEventList = new ArrayList<Event>();
+        Event newEvent;
         Escape sortie = new Escape();
         newEventList.add(sortie); // ajoute la sortie au pull d'event
         
@@ -37,25 +40,28 @@ public class Game {
             int randomEventId = (int)(randomNumber*5+1); 
             switch (randomEventId) {
                 case 1:
-                    Chest newChest = new Chest();
-                    newEventList.add(newChest);
+                    newEvent = new Chest();
                     break;
                 case 2:
-                    Merchant newMerchant = new Merchant();
-                    newEventList.add(newMerchant);
+                    newEvent = new Merchant();
                 break;
                 case 3,4,5:
-                    Fight newFight = new Fight();
-                    newEventList.add(newFight);
+                    newEvent = new Fight(this.room_nb);
                 break;
             }
+            newEventList.add(newEvent);
+
         }
         this.active_room = new Room(false, newEventList); 
     
     }
-
+    /*
+     * Procédure pour gérer l'exploration d'une room
+     * Créé une nouvelle room et explore jusqu'à trouver la sortie
+     */
     public void enter_room(){
         this.create_room();
+        System.out.println("Vous voici dans une nouvelle salle");
         boolean inProgress = true;
         while(inProgress){
 
@@ -66,21 +72,30 @@ public class Game {
                 Scanner clavier = new Scanner(System.in);
                 String choix = "";
         
+                // Vérifie que l'utilisateur souhaite quitter la room
                 while (choix!="O" || choix != "o"|| choix != "N" || choix != "n") {
-                    System.out.println("Taper O si vous voulez passer à l'étage suivant, Tapez N sinon");        // Proposition utilisateur
-                choix = clavier.nextLine();    
+                    System.out.println("Taper O si vous voulez passer à l'étage suivant, Tapez N sinon");
+                    choix = clavier.nextLine();    
                 }
-                if(choix == "o" || choix == "O" ) {                                                   // Vérifie que l'utilisateur souhaite quitter la room
+                if(choix == "o" || choix == "O" ) {
                     inProgress = false;
                 }
                 else 
                 {
-                   System.out.println("Vous continuez d'explorer l'étage");                                            // Affichage utilisateur
+                   System.out.println("Vous continuez d'explorer l'étage");
                 }
                 clavier.close();
             }
 
         }
+    }
+
+    void play(){
+        while(this.room_nb <15 || this.player.getHP() <= 0){
+            enter_room();
+        }
+        //Possiblement rajouter un combat de boss ici
+        System.out.println("Félicitations! Vous êtes sortis du donjon");
     }
 
     public int getRoom_nb() {
