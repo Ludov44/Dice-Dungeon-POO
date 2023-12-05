@@ -77,7 +77,8 @@ public class Room{
                 
             }
             this.events.get(eventNumber).trigger(player);
-            if(player.getHP() <= 0){ // Si le joueur est mort, quitte la room
+            
+            if(player.is_dead()){ // Si le joueur est mort, quitte la room
                 return false;
             }
 

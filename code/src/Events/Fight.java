@@ -75,25 +75,39 @@ public class Fight implements Event {
 
         int playerRoll = 0;
         int monsterRoll = 0;
-        
+        int montantDgts = 0;
 
-        while(this.enemies.size() !=0 && player.getHP() > 0){
+        while(this.enemies.size() !=0 && player.is_alive()){
             currentMonster = this.enemies.get(0);
 
-            while(currentMonster.getHP() > 0 && player.getHP() > 0){
-                currentMonster = this.enemies.get(0);
+            while(currentMonster.is_alive() && player.is_alive()){
 
                 do{
                     playerRoll = (int)(Math.random()*6 + 1);
+                    System.out.println("Vous avez fait " + playerRoll + " au lancer de dé");
+
                     monsterRoll = (int)(Math.random()*6 + 1);
+                    System.out.println("Le monstre a fait " + playerRoll + " au lancer de dé");
                 }while(playerRoll == monsterRoll);
-                
-                if(playerRoll<monsterRoll){
-                    player.setHP(currentMonster.getAttackPower());
-                    System.out.println("Vous subissez " + currentMonster.getAttackPower() + " dégâts");
+
+                System.out.println();
+
+
+                if(playerRoll < monsterRoll){
+                    System.out.println("Vous avez perdu le lancer de dé!");
+                    montantDgts = currentMonster.getAttackPower() - player.getDefense() + 1 ;
+                    if(montantDgts < 1) montantDgts = 1;
+
+                    player.setHP(player.getHP()-montantDgts);
+                    System.out.println("Vous subissez " + montantDgts + " dégâts!");
 
                 }else{
-                    currentMonster.setHP(player.getAttackPower());
+                    System.out.println("Vous avez gagné le lancer de dé!");
+                    montantDgts = player.getAttackPower() - currentMonster.getDefense() + 1 ;
+                    if(montantDgts < 1) montantDgts = 1;
+                    
+                    currentMonster.setHP(player.getHP()-montantDgts);
+                    System.out.println("Vous infligez " + montantDgts + " dégâts!");
                 }
 
             }

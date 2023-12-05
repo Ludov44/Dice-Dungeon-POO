@@ -93,11 +93,16 @@ public class Game {
     }
 
     void play(){
-        while(this.room_nb <15 || this.player.getHP() <= 0){
+        while(this.room_nb <15 && this.player.is_alive()){
             enter_room();
         }
         //Possiblement rajouter un combat de boss ici
-        System.out.println("Félicitations! Vous êtes sortis du donjon");
+        if(player.is_dead()){
+            System.out.println("Vous êtes mort...");
+
+        }else{
+            System.out.println("Félicitations! Vous êtes sortis du donjon");
+        }
     }
 
     public int getRoom_nb() {

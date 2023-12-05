@@ -12,7 +12,7 @@ public abstract class Entity {
    }
    
    public boolean is_alive () {
-      return (this.HP >= 0);
+      return (this.HP > 0);
    }
 
    public boolean is_dead () {
