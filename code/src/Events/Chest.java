@@ -145,7 +145,7 @@ public class Chest implements Event {
       {
          if (this.getMoney() > 0) {                                                                  
             System.out.println("Vous avez trouvé " + this.getMoney() +  " coins dans le coffre");    // Affichage utilisateur pour les coins
-            player.getInv().changeMoney(this.getMoney());                                            // Ajoute la money à l'inventaire de l'avatar
+            player.getInv().setMoney(this.getMoney() + player.getInv().getMoney());                                         // Ajoute la money à l'inventaire de l'avatar
          }
          for (Item item : items) {
             System.out.println("\t - Item trouvé :" + item.toString());                              // Affichage utilisateur pour les items

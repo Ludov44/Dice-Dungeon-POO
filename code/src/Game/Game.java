@@ -48,6 +48,8 @@ public class Game {
                 case 3,4,5:
                     newEvent = new Fight(this.room_nb);
                 break;
+                default:
+                    newEvent = new Fight(this.room_nb);
             }
             newEventList.add(newEvent);
 

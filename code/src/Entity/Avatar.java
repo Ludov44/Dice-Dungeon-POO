@@ -38,10 +38,14 @@ public class Avatar extends Entity {
       this.stock.setMoney(this.stock.getMoney() + nb);
    }
 
-   @override
+   @Override
    public int getAttackPower() {
       double attackEfficiency = Math.random() % 0.1;
 
-      return ((this.attack * (1 + attackEfficiency)) % 1);
+      return (int) ((this.getAttack() * (1 + attackEfficiency)));
+   }
+
+   public Inventory getInv() {
+      return stock;
    }
 }
