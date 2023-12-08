@@ -1,9 +1,9 @@
 package Entity;
 
-import Entity.Entity;
+import Entity.Entite;
 import java.lang.Math;
 
-public class Avatar extends Entity {
+public class Avatar extends Entite {
    private int maxHP;
    private String name;
    private Inventory stock;
@@ -40,13 +40,8 @@ public class Avatar extends Entity {
 
    @Override
    public int getAttackPower() {
-      double attackEfficiency = Math.random() % 0.1;
-
-      return (int) ((this.getAttack() * (1 + attackEfficiency)));
-   }
-
-   public Inventory getInv() {
-      return stock;
+      int attackBoost = this.attack * (int)Math.round(Math.random() * this.attack);
+      return attackBoost;   
    }
 
    @Override

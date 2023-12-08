@@ -1,18 +1,18 @@
 package Entity;
 
-public abstract class Entity {
+public abstract class Entite {
    private int HP;
    private int attack;
    private int defense;
 
-   public Entity (int HP, int attack, int defense) {
+   public Entite (int HP, int attack, int defense) {
       this.HP = HP;
       this.attack = attack;
       this.defense = defense;
    }
    
    public boolean is_alive () {
-      return (this.HP > 0);
+      return (this.HP >= 0);
    }
 
    public boolean is_dead () {
