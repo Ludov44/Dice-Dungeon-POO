@@ -3,6 +3,7 @@ package Events;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Exception.*;
 import Entity.Avatar;
 import Entity.Monster;
 import Item.Item;
@@ -68,10 +69,12 @@ public class Fight implements Event {
         //Fin
     }
 
-
     @Override
-    public void trigger(Avatar player) {
+    public void trigger(Avatar player) throws PlayerDead {
         Monster currentMonster;
+        Scanner clavier = new Scanner(System.in);
+        String pause; //L'appel de pause permet de stopper l'exécution jusqu'à ce que l'utilisateur intéragisse avec le programme
+
 
         int playerRoll = 0;
         int monsterRoll = 0;
@@ -84,38 +87,50 @@ public class Fight implements Event {
 
                 do{
                     playerRoll = (int)(Math.random()*6 + 1);
-                    System.out.println("Vous avez fait " + playerRoll + " au lancer de dé");
 
                     monsterRoll = (int)(Math.random()*6 + 1);
-                    System.out.println("Le monstre a fait " + playerRoll + " au lancer de dé");
                 }while(playerRoll == monsterRoll);
 
-                System.out.println();
+                System.out.println("Vous avez fait " + playerRoll + " au lancer de dé");
+                System.out.println("Le monstre a fait " + monsterRoll + " au lancer de dé");
+
 
 
                 if(playerRoll < monsterRoll){
                     System.out.println("Vous avez perdu le lancer de dé!");
+                    pause = clavier.nextLine();
+
                     montantDgts = currentMonster.getAttackPower() - player.getDefense() + 1 ;
                     if(montantDgts < 1) montantDgts = 1;
 
                     player.setHP(player.getHP()-montantDgts);
                     System.out.println("Vous subissez " + montantDgts + " dégâts!");
+                    pause = clavier.nextLine();
 
                 }else{
                     System.out.println("Vous avez gagné le lancer de dé!");
+                    pause = clavier.nextLine();
+
                     montantDgts = player.getAttackPower() - currentMonster.getDefense() + 1 ;
                     if(montantDgts < 1) montantDgts = 1;
                     
                     currentMonster.setHP(player.getHP()-montantDgts);
                     System.out.println("Vous infligez " + montantDgts + " dégâts!");
+                    pause = clavier.nextLine();
                 }
 
+            }
+            if(player.is_alive()){
+                System.out.println("Vous avez tué " + currentMonster.getType());
+
+            }else{
+                throw new PlayerDead("Vous êtes mort",);
             }
             this.enemies.remove(0);
             
 
         }
-
+        clavier.close();
     }
 
 
@@ -125,6 +140,6 @@ public class Fight implements Event {
         return Fight.id;
     }
 
-
+    
      
 }

@@ -1,5 +1,6 @@
 package Room;
 import Events.Event;
+import Exception.PlayerDead;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -50,7 +51,7 @@ public class Room{
      * Prends un événement de la liste et le déclenche
      * Renvoie true si un event a été déclenché et false si il ne reste que la sortie
      */
-    public boolean explore(Avatar player){
+    public boolean explore(Avatar player) throws PlayerDead{
         if(this.events.size() == 1){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
             if(!this.escape_found){
                 this.events.get(1).trigger(player);

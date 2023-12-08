@@ -1,6 +1,6 @@
 package Game;
 
-
+import Exception.*;
 import Entity.Avatar;
 import Room.Room;
 import Events.*;
@@ -61,7 +61,7 @@ public class Game {
      * Procédure pour gérer l'exploration d'une room
      * Créé une nouvelle room et explore jusqu'à trouver la sortie
      */
-    public void enter_room(){
+    public void enter_room() throws PlayerDead{
         this.create_room();
         System.out.println("Vous voici dans une nouvelle salle");
         boolean inProgress = true;
@@ -93,8 +93,13 @@ public class Game {
     }
 
     void play(){
-        while(this.room_nb <15 && this.player.is_alive()){
+        try {
+            while(this.room_nb <15 && this.player.is_alive()){
             enter_room();
+            }
+            
+        } catch (PlayerDead e) {
+            // TODO: handle exception
         }
         //Possiblement rajouter un combat de boss ici
         if(player.is_dead()){
