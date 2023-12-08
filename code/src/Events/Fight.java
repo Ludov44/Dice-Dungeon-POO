@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Exception.*;
+import Entity.AllMonsters;
 import Entity.Avatar;
 import Entity.Monster;
 import Item.Item;
@@ -21,7 +22,7 @@ public class Fight implements Event {
     public void fill(int nbRoom)
     {
         //Variables
-            ArrayList<Monster> monsters = Monster.allMonsters;
+            ArrayList<Monster> monsters = AllMonsters.allMonsters;
             double dice = Math.random();                             // Variables contenant un réel généré aléatoirement entre 0 et 1
             int ind = (int)(dice*monsters.size());                   // Choisit aléatoirement un premier monstre 
 
