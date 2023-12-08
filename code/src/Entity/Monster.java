@@ -1,30 +1,24 @@
 package Entity;
 import java.lang.Math;
 
-public class Monster extends Entity {
-   private String type;
+public class Monster extends Entite {
+   private string type;
    private int reward;
 
-   public Monster (int HP, int attack, int defense, String type, int reward) {
+   public Monster (int HP, int attack, int defense, string type, string reward) {
       super (HP, attack, defense);
       this.type = type;
       this.reward = reward;
    }
 
-   @Override
+
+
+   @override
    public int getAttackPower() {
-      double attackEfficiency = (Math.random() % 0.1); 
-      return (int)(this.getAttack() * (0.6 + attackEfficiency));
+      int attackEfficiency = (Math.random() % 0.1); 
+      return ((int)Math.round(this.attack * (0.6 + attackEfficiency)));
    }
-   /*
-   les monstres de bases ont une puissance d'attaque entre 60% et 160%
-   */
-   public String getType() {
-      return type;
-   }
-   public int getReward() {
-      return reward;
-   }
+
 }
 
 
@@ -42,3 +36,39 @@ public class Monster extends Entity {
 -attaques les autres monstres 
 -empêche de se soigner 
 */
+
+public class CriticalHitMonster extends Monster {
+   private int luck;
+
+   public CriticalHitMonster (HP, A, D, T, R, L) {
+      super (HP, A, D, T, R, L);
+      this.luck = L;          //faire une condition luck entre 0 et 10
+   }
+
+   @override
+   public int getAttackPower() {
+      double attackEfficiency = Math.random() % 0.1;
+
+      return ((this.attack * (0.6 + attackEfficiency)) % 1);
+   }
+}
+
+public class AllOrNothingMonster extends Monster {
+
+   public AllOrNothingMonster (HP, A, D, T, R) {
+      super (HP, A, D, T, R);
+   }
+
+   @override
+   public int getAttackPower() {
+      double luck = Math.random();
+      if (luck > 0.5) {
+         return this.attack * 2.5;
+      }
+      else {
+         return 0;
+      }
+      
+   }
+   
+}
