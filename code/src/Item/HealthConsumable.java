@@ -1,24 +1,20 @@
-package Item;
+public Class HealthConsumable extends Consumable{
 
-import Entity.Avatar;
-
-public class HealthConsumable extends Consumable{
-
-    public HealthConsumable(String name, int effect, int price){
-        super(name, effect, price);
+    public healthConsumable(string n, int h , int p){
+        super(n, h, p);
     }
 
     @Override
     public void use(Avatar player){
-        if (this.getEffect() == 0){
+        if (this.effect == 0){
             throw new IllegalArgumentException("La potion est vide");
         }
         else{
-            player.setHP(player.getHP() + this.getEffect());
-            if(player.getHP() > player.getMaxHP()){
-                player.setHP(player.getMaxHP());;
+            player.currentHP += this.effect;
+            if(player.HP > player.maxHP){
+                player.HP = player.maxHP;
             }
-            this.setEffect(0);
+            this.effect = 0;
         }
     }
 }

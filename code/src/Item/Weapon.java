@@ -1,27 +1,18 @@
-package Item;
-
-import Entity.Avatar;
-
-public class Weapon extends Equippable{
+public Class Weapon extends Equipement{
     
-    public Weapon(String name, int prix, int bonus){
-        super(name, prix, bonus);
+    public weapon(string n, int p, int b){
+        super(n, p, b);
     }
 
     @Override
-    public void use(Avatar player){
-        this.setIsEquip(true);
-        player.setAttack(player.getAttack() + this.getBonus());;
+    public use(Avatar player){
+        this.isEquip = true 
+        player.attack += this.bonus;
     }
 
     @Override 
-    public void unuse(Avatar player){
-        this.setIsEquip(false);
-        player.setAttack(player.getAttack() - this.getBonus());
-    }
-
-    @Override
-    public String toString(){
-        return '[' + this.getName() + "] Weapon +" + this.getBonus();
+    public abstract void unuse(Avatar player){
+        this.isEquip = false 
+        player.attack -= this.bonus;
     }
 }
