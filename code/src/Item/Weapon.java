@@ -4,8 +4,8 @@ import Entity.Avatar;
 
 public class Weapon extends Equippable{
     
-    public Weapon(String n, int p, int b){
-        super(n, p, b);
+    public Weapon(String name, int prix, int bonus){
+        super(name, prix, bonus);
     }
 
     @Override
@@ -18,5 +18,10 @@ public class Weapon extends Equippable{
     public void unuse(Avatar player){
         this.setIsEquip(false);
         player.setAttack(player.getAttack() - this.getBonus());
+    }
+
+    @Override
+    public String toString(){
+        return '[' + this.getName() + "] Weapon +" + this.getBonus();
     }
 }

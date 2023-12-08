@@ -48,4 +48,10 @@ public class Avatar extends Entity {
    public Inventory getInv() {
       return stock;
    }
+
+   @Override
+   public String toString(){
+      return String.format("[%s] - HP : %d/%d, ATK : %d, DEF : %d (Inventory : %s)", 
+         getName(), getMaxHP(), getHP(), getAttack(), getDefense(), getStockMoney(), getInv().toString());
+   }
 }
