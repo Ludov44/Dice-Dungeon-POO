@@ -1,6 +1,7 @@
 package Events;
 
 import Entity.Avatar;
+import Item.Equippable;
 import Item.Item;
 import Item.ItemList;
 import java.util.ArrayList;                     // Permet l'utilisation des listes
@@ -149,7 +150,9 @@ public class Chest implements Event {
          }
          for (Item item : items) {
             System.out.println("\t - Item trouvé :" + item.toString());                              // Affichage utilisateur pour les items
-            player.getInv().addItem(item);                                                           // Ajoute les items à l'inventaire de l'avatar
+            if (item.getItemType() == 1 || item.getItemType() == 2) {
+               player.getInv().addItem( (Equippable) item);                                          // Ajoute les items à l'inventaire de l'avatar, si ce sont des Equippable
+            }
          }
       }
       else 

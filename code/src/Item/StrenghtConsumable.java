@@ -3,6 +3,7 @@ package Item;
 import Entity.Avatar;
 
 public class StrenghtConsumable extends Consumable{
+    public static final int itemType = 4;
 
     public StrenghtConsumable(String name, int effect, int price){
         super(name, effect, price);
@@ -26,5 +27,15 @@ public class StrenghtConsumable extends Consumable{
         if(this.getEffect() == 0){
             player.setAttack(player.getAttack() - getEffect());
         }
+    }
+
+    @Override
+    public int getItemType() {
+        return itemType;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("[%s] Force +%d", getName(), getBonus());
     }
 }

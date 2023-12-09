@@ -5,12 +5,14 @@ public abstract class Entity {
    private int attack;
    private int defense;
    private int maxHP;
+   private String name;
 
-   public Entity (int HP, int attack, int defense) {
+   public Entity (int HP, int attack, int defense, String name) {
       this.HP = HP;
       this.maxHP = HP;
       this.attack = attack;
       this.defense = defense;
+      this.name = name;
    }
    
    // pourquoi is_alive et is_dead existent tous les deux ? - Raphaël
@@ -20,6 +22,14 @@ public abstract class Entity {
 
    public boolean is_dead () {
       return (this.HP <= 0);
+   }
+
+   public String getName() {
+      return this.name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
    }
 
    public int getMaxHP() {
@@ -56,6 +66,11 @@ public abstract class Entity {
 
    public int getAttackPower() {
       return this.attack;
+   }
+
+   public String toString(){
+      return String.format("[%s] - HP : %d/%d, ATK : %d, DEF : %d)", 
+         getName(), getHP(), getMaxHP(), getAttack(), getDefense());
    }
 
 }

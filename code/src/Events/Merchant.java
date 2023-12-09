@@ -1,6 +1,7 @@
 package Events;
 
 import Entity.Avatar;
+import Item.Equippable;
 import Item.Item;
 import Item.ItemList;
 
@@ -67,12 +68,16 @@ public class Merchant implements Event{
             choix = clavier.nextLine();                                                                 // Lecture de la réponse de l'utilisateur
          }
        
-        if( choix != "s" && choix != "S" )
+        if(choix != "s" && choix != "S")
         {
-            if(player.getInv().getMoney() >= items.get(Integer.parseInt(choix)).getPrice())
+            Item item = items.get(Integer.parseInt(choix));
+            if(player.getInv().getMoney() >= item.getPrice())
             {
-                player.changeMoney(items.get(Integer.parseInt(choix)).getPrice());
-                player.getInv().addItem(items.get(Integer.parseInt(choix)));
+                player.changeMoney(-item.getPrice());
+                if (item.getItemType() == 1 || item.getItemType() == 2) {
+                    player.getInv().addItem( (Equippable) item);
+                                     
+                }
             }
         }
         

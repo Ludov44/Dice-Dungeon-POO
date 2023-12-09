@@ -6,7 +6,7 @@ public class Monster extends Entity {
    private int reward;
 
    public Monster (int HP, int attack, int defense, String type, int reward) {
-      super (HP, attack, defense);
+      super (HP, attack, defense, type);
       this.type = type;
       this.reward = reward;
    }
@@ -25,6 +25,11 @@ public class Monster extends Entity {
    public int getReward() {
       return reward;
    }
+
+   @Override
+   public String toString(){
+      return String.format(super.toString() + " (Reward = %d)", getReward());
+   } 
 }
 
 

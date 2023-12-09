@@ -18,5 +18,9 @@ public class AllOrNothingMonster extends Monster {
       
    }
    
+   @Override
+   public String toString(){
+      return super.toString() + " (CriticalOnly)";
+   }
 }
 

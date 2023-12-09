@@ -23,6 +23,11 @@ public class ConfusedMonster extends Monster {
          return 0;
       }
    }
+
+   @Override
+   public String toString(){
+      return super.toString() + " (Confused)";
+   } 
 }
 
 

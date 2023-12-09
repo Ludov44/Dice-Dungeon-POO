@@ -3,6 +3,7 @@ package Item;
 import Entity.Avatar;
 
 public class HealthConsumable extends Consumable{
+    public static final int itemType = 3;
 
     public HealthConsumable(String name, int effect, int price){
         super(name, effect, price);
@@ -20,6 +21,16 @@ public class HealthConsumable extends Consumable{
             }
             this.setEffect(0);
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format("[%s] Soin +%d", getName(), getBonus());
+    }
+
+    @Override
+    public int getItemType() {
+        return itemType;
     }
 }
 

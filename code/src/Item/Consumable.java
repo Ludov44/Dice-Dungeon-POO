@@ -35,4 +35,12 @@ public abstract class Consumable implements Item{
         return this.price;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getBonus() {
+        return this.effect;
+    }
+ 
 }

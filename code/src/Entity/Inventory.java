@@ -2,28 +2,28 @@ package Entity;
 
 import java.util.ArrayList;
 
-import Item.Item;
+import Item.Equippable;
 
 public class Inventory {
-    private ArrayList<Item> items;
+    private ArrayList<Equippable> contents;
     private int money;
 
     public Inventory(){
-        this.items = new ArrayList<Item>();
+        this.contents = new ArrayList<Equippable>();
         this.money = 0;
     }
 
-    public Inventory(ArrayList<Item> items, int money) {
-        this.items = items;
+    public Inventory(ArrayList<Equippable> contents, int money) {
+        this.contents = contents;
         this.money = money;
     }
     
-    public ArrayList<Item> getItems() {
-        return items;
+    public ArrayList<Equippable> getContent() {
+        return this.contents;
     }
 
-    public void addItem(Item item) {
-        this.items.add(item);
+    public void addItem(Equippable item) {
+        this.contents.add(item);
     }
 
     public int getMoney() {
@@ -32,6 +32,19 @@ public class Inventory {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    @Override
+    public String toString(){
+        String res = String.format("Money = %d ; Contents = {", getMoney());
+        for (int i = 0; i < this.contents.size(); i++) {
+            res += String.format("%s", this.getContent().get(i).toString());
+            if (i < this.contents.size() - 1) {
+                res += ", ";
+            }
+        }
+        res += '}';
+        return res;
     }
 
 }

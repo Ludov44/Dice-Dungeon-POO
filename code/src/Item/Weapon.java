@@ -3,6 +3,7 @@ package Item;
 import Entity.Avatar;
 
 public class Weapon extends Equippable{
+    public static int itemType = 2;
     
     public Weapon(String name, int price, int bonus){
         super(name, price, bonus);  
@@ -21,7 +22,16 @@ public class Weapon extends Equippable{
     }
 
     @Override
+    public int getItemType() {
+        return itemType;
+    }
+
+    @Override
     public String toString(){
-        return '[' + this.getName() + "] Weapon +" + this.getBonus();
+        String res = String.format("[%s] Weapon +%d", getName(), getBonus());
+        if (this.getIsEquip()) {
+            res += " [E]";
+        }
+        return res;
     }
 }
