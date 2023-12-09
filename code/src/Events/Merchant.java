@@ -4,11 +4,10 @@ import Entity.Avatar;
 import Item.Equippable;
 import Item.Item;
 import Item.ItemList;
+import io.UserInput;
 
 import java.util.ArrayList; 
 import java.lang.Math;                          // Permet de générer un nombre random entre 0 et 1
-import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
-
 
 public class Merchant implements Event{
     ArrayList<Item> items;                          // Les items proposés par le marchand
@@ -56,9 +55,6 @@ public class Merchant implements Event{
     @Override
     public void trigger(Avatar player) 
     {
-        //Variables
-        Scanner clavier = new Scanner(System.in);
-        String choix = "";
         // Début
         System.out.println("Vous avez trouvé un Marchand !\nItems en vente :\n");                                      // Affichage utilisateur
         
@@ -67,25 +63,18 @@ public class Merchant implements Event{
             System.out.println(String.format("\t - %s", i.toString()));                                // Affichage utilisateur pour les items
         }
 
-        do {
-            System.out.println("/t - Tapez 1, 2 ou 3 pour achetez l'item voulu, tapez s si aucun item vous intéresse.");    // Proposition utilisateur
-            choix = clavier.nextLine();   
-        } while (choix!="1" || choix != "2"|| choix != "3" || choix != "s" || choix != "S");
+        int choice = UserInput.getInt("Tapez 1, 2 ou 3 pour achetez l'item voulu, tapez une autre touche si aucun item ne vous intéresse : ");
        
-        if(choix != "s" && choix != "S")
-        {
-            Item item = items.get(Integer.parseInt(choix));
+        if (choice == 1 || choice == 2 || choice == 3){
+            Item item = items.get(choice);
             if(player.getInv().getMoney() >= item.getPrice())
             {
                 player.changeMoney(-item.getPrice());
                 if (item.getItemType() == 1 || item.getItemType() == 2) {
                     player.getInv().addItem( (Equippable) item);
-                                     
+                                        
                 }
             }
         }
-        
-        clavier.close();
-        //Fin
     }     
 }

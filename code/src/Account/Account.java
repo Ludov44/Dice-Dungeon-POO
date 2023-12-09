@@ -33,12 +33,10 @@ public class Account {
 
     public void play(){
         Game activeGame = new Game(player);        
-        String choice = UserInput.getInput("Lancer une nouvelle partie (O/N) ?");
-        while (choice.charAt(0) == 'O') {
+        while (UserInput.getChoice("Lancer une nouvelle partie (O/N) ?")) {
             activeGame.setRoom_nb(0);
             System.out.println("Lancement d'un nouveau donjon...");
             this.tokens += activeGame.play();
-            choice = UserInput.getInput("Lancer une nouvelle partie (O/N) ?");
         }
         System.out.println("Arrêt du jeu...");
     }

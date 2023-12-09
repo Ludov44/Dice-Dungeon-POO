@@ -1,12 +1,12 @@
 package Events;
 
 import java.util.ArrayList;                     // Permet l'utilisation des listes
-import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
 
 import Entity.Avatar;
 import Item.Equippable;
 import Item.Item;
 import Item.ItemList;
+import io.UserInput;
 
 public class Chest implements Event {
    private int money;                          
@@ -132,20 +132,12 @@ public class Chest implements Event {
      * @param player Avatar de l'utilisateur pour la partie en cours
      */
     public void trigger(Avatar player){
-      //Variables
-      Scanner clavier = new Scanner(System.in);
-      String choix = "";
       // Début
-      do {
-         System.out.println("Vous avez trouvé un coffre !");                         // Affichage utilisateur
-         System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");       // Proposition utilisateur
-         choix = clavier.nextLine();                                                   // Lecture de la réponse de l'utilisateur
-         System.out.println(choix);
-      } while (choix != "O" && choix != "o" && choix != "N" && choix != "n");
+      System.out.println("Vous avez trouvé un coffre !");                         // Affichage utilisateur
 
-      System.out.println("Contenu du coffre :");     
-      if(choix == "o" || choix == "O" )                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
+      if(UserInput.getChoice("Ouvrir le coffre (O/N) ?"))                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
+         System.out.println("Contenu du coffre :");     
          if (this.getMoney() > 0) {                                                                  
             System.out.println(String.format("\t - Vous avez trouvé %d coins dans le coffre", getMoney()));    // Affichage utilisateur pour les coins
             player.getInv().setMoney(this.getMoney() + player.getInv().getMoney());                                         // Ajoute la money à l'inventaire de l'avatar
@@ -162,6 +154,5 @@ public class Chest implements Event {
          System.out.println("Le coffre est abandonné");                                            // Affichage utilisateur
       }
       //Fin
-      clavier.close();
     }
 }
