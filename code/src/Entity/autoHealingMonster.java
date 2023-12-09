@@ -1,35 +1,36 @@
 package Entity;
-package Monster;
 
-public class AutoHealingMonsterMonster extends Monster {
+public class AutoHealingMonster extends Monster {
    private int luck;
    private int healingCapacity;
 
    public AutoHealingMonster (int HP, int attack, int defense, String type, int reward, int luck, int healingCapacity, int maxHP ) {
       super (HP, attack, defense, type, reward);
-      this.maxHP = HP;
       this.luck = luck;
       this.healingCapacity = healingCapacity;
           
    }
 
-   public void mayHeal() {
-    double luck = Math.random();
-    if (luck > 0.8) {
-        this.HP = this.HP + healingCapacity;
-        if (this.HP > this.maxHP) {
-            this.HP = this.maxHP;
+    public void mayHeal() {
+        double luck = Math.random();
+        if (luck > 0.8) {
+            this.setHP(this.getHP() + healingCapacity);
+            if (this.getHP() > this.getMaxHP()) {
+                this.setHP(this.getMaxHP());
+            }
         }
-    }
-   }
-   
-   @override
-   public int getAttackPower() {
-    mayHeal();
-    int attackEfficiency = Math.random(); 
-    return ((int)Math.round(this.attack * (0.6 + attackEfficiency)));
    }
 
+    public int getLuck() {
+        return luck;
+    }
+   
+   @Override
+   public int getAttackPower() {
+    mayHeal();
+    double attackEfficiency = Math.random(); 
+    return ((int)Math.round(this.getAttack() * (0.6 + attackEfficiency)));
+   }
 
 }
 

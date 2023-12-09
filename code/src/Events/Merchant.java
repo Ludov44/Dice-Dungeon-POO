@@ -2,6 +2,8 @@ package Events;
 
 import Entity.Avatar;
 import Item.Item;
+import Item.ItemList;
+
 import java.util.ArrayList; 
 import java.lang.Math;                          // Permet de générer un nombre random entre 0 et 1
 import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
@@ -11,6 +13,9 @@ public class Merchant implements Event{
     ArrayList<Item> items;                          // Les items proposés par le marchand
     private final static int id = 2;                // Permet d'identifier les Events dans Room
 
+    /**
+     * Constructeur de la classe Merchant
+     */
     public Merchant()
     {
     //Début
@@ -19,10 +24,13 @@ public class Merchant implements Event{
      //Fin 
     }
 
+    /**
+     * Remplit la vitrine du marchand avec 3 items aléatoires
+     */
     public void fill()
     {
     //Variables
-        ArrayList<Item> allItems = Item.allObjects;
+        ArrayList<Item> allItems = ItemList.allObjects();
         double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1.
         int ind = (int)(dice*allItems.size());                    // Choisit aléatoirement un premier item 
 

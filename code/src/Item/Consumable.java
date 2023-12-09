@@ -1,35 +1,37 @@
-public Class Consumable extends Item{
-    private string name;
+package Item;
+
+public abstract class Consumable implements Item{
+    private String name;
     private int effect;
     private int price;
 
-    public consumable(string n, int e, int p){
-        this.name = n;
-        this.effect = e;
-        this.price = p;
+    public Consumable(String name, int effect, int price){
+        this.name = name;
+        this.effect = effect;
+        this.price = price;
     }
 
-    public string getConsumable(){
+    public String getConsumable(){
         return this.name;
     }
 
-    public string setConsumable(string n){
+    public void setConsumable(String n){
         this.name = n;
     }
 
-    public getEffect(){
+    public int getEffect(){
         return this.effect;
     }
     
-    public setEffect(int v){
+    public void setEffect(int v){
         this.effect = v;
     }
 
-    public setPrice(int pr){
+    public void setPrice(int pr){
         this.price = pr;
     }
 
-    public getPrice(){
+    public int getPrice(){
         return this.price;
     }
 

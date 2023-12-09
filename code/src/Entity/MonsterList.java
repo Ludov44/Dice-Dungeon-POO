@@ -4,11 +4,11 @@ import java.util.ArrayList;                     // Permet l'utilisation des list
 
 
 
-public class AllMonsters {
-    public static ArrayList<Monster> allMonsters = new ArrayList<Monster>();
+public class MonsterList {
     
-    public AllMonsters()
+    public static ArrayList<Monster> allMonsters()
     {
+        ArrayList<Monster> monster_list = new ArrayList<Monster>();
         double randomNumber;
         Monster newMonster;
         
@@ -25,7 +25,9 @@ public class AllMonsters {
                 default:                // Le cas 3.
                     newMonster = new Monster(10 + (int)(randomNumber*20), 1 + (int)(randomNumber*6),(int)(randomNumber*3), "Araignée", (int)(randomNumber*3));
             }
-            this.allMonsters.add(newMonster);
+            monster_list.add(newMonster);
+        }
+        
+        return monster_list;
     }
-}
 }

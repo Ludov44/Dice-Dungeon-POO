@@ -4,7 +4,7 @@ import Entity.*;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        System.out.println("Test equipping joueur :");
         Inventory inv = new Inventory();
         Avatar player = new Avatar("pedro", 10, 10, 10, inv);
         Item objet = new Weapon("epee", 100, 5);

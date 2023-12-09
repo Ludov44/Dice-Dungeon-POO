@@ -2,8 +2,8 @@ package Events;
 
 import Entity.Avatar;
 import Item.Item;
+import Item.ItemList;
 import java.util.ArrayList;                     // Permet l'utilisation des listes
-import java.io.FileReader;
 import java.lang.Math;                          // Permet de générer un nombre random entre 0 et 1
 import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
 
@@ -59,7 +59,7 @@ public class Chest implements Event {
    }
 
    @Override
-   /*
+   /**
     * Getter de l'Id de cet Event
     * @return un entier représentant identifiant de l'event chest, ici 1
     */
@@ -82,7 +82,7 @@ public class Chest implements Event {
     */
     public void fill()
     {
-      ArrayList<Item> allItems = Item.allObjects;
+      ArrayList<Item> allItems = ItemList.allObjects();
       double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
       int ind = (int)(dice*allItems.size());                    // Choisit aléatoirement un premier item 
 
@@ -125,7 +125,7 @@ public class Chest implements Event {
 
     @Override
 
-    /*
+    /**
      * Méthode déclencheuse de l'Event Chest, implémentation de l'interface Event.
      * Elle ajoute les coins et items a l'inventaire de l'avatar si il décide de l'ouvrir
      * @param player Avatar de l'utilisateur pour la partie en cours

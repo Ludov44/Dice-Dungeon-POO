@@ -1,22 +1,33 @@
 package Entity;
 
-public abstract class Entite {
+public abstract class Entity {
    private int HP;
    private int attack;
    private int defense;
+   private int maxHP;
 
-   public Entite (int HP, int attack, int defense) {
+   public Entity (int HP, int attack, int defense) {
       this.HP = HP;
+      this.maxHP = HP;
       this.attack = attack;
       this.defense = defense;
    }
    
+   // pourquoi is_alive et is_dead existent tous les deux ? - Raphaël
    public boolean is_alive () {
-      return (this.HP >= 0);
+      return (this.HP > 0);
    }
 
    public boolean is_dead () {
       return (this.HP <= 0);
+   }
+
+   public int getMaxHP() {
+      return maxHP;
+   }
+
+   public void setMaxHP(int maxHP) {
+      this.maxHP = maxHP;
    }
 
    public int getHP() {
@@ -30,12 +41,15 @@ public abstract class Entite {
    public int getDefense () {
       return this.defense;
    }
+
    public void setHP(int nb) {
       this.HP = nb;
    }
-      public void setAttack(int nb) {
+
+   public void setAttack(int nb) {
       this.attack = nb;
    }
+
    public void setDefense (int nb) {
       this.defense = nb;
    }

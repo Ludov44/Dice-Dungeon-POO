@@ -1,9 +1,11 @@
 package Game;
 
-import Exception.*;
+
 import Entity.Avatar;
 import Room.Room;
 import Events.*;
+import Exception.PlayerDead;
+
 import java.util.ArrayList;
 import java.lang.Math;
 import java.util.Scanner;  
@@ -21,8 +23,8 @@ public class Game {
         this.player = player;
         this.room_nb = 0;
     }
-    /*
-     * Créer une room en remplissant une liste d'event aléatoirement
+    /**
+     * Créer une room en remplissant une liste d'event aléatoirement.
      * Chaque room possède une sortie et possiblement des combats, des chests et des marchands
      */
     private void create_room(){
@@ -45,10 +47,7 @@ public class Game {
                 case 2:
                     newEvent = new Merchant();
                 break;
-                case 3,4,5:
-                    newEvent = new Fight(this.room_nb);
-                break;
-                default:
+                default:                                    // les cas 3, 4, 5 tombe dans le default.
                     newEvent = new Fight(this.room_nb);
             }
             newEventList.add(newEvent);
@@ -57,8 +56,8 @@ public class Game {
         this.active_room = new Room(false, newEventList); 
     
     }
-    /*
-     * Procédure pour gérer l'exploration d'une room
+    /**
+     * Procédure pour gérer l'exploration d'une room.
      * Créé une nouvelle room et explore jusqu'à trouver la sortie
      */
     public void enter_room() throws PlayerDead{
@@ -92,10 +91,10 @@ public class Game {
         }
     }
 
-    void play(){
+    public void play(){
         try {
-            while(this.room_nb <15 && this.player.is_alive()){
-            enter_room();
+            while(this.room_nb < 15 && this.player.is_alive()){
+                enter_room();
             }
             
         } catch (PlayerDead e) {

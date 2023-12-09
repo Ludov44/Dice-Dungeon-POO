@@ -1,6 +1,8 @@
 package Account;
 
 import Game.Game;
+import Entity.Avatar;
+import Entity.Inventory;
 
 public class Account {
     private int tokens;
@@ -8,13 +10,16 @@ public class Account {
     private Game active_game;
 
     public Account() {
-        // TODO
+        this.tokens = 0;
+        this.statistics = new Stats();
+        // création Game
+        Inventory inv = new Inventory();
+        Avatar player = new Avatar("anon", 20, 5, 5, inv); // garder les stats de base dans un autre fichier ?
+        this.active_game = new Game(player);
     }
 
-    public void play(){
-        this.active_game = new Game(null);
-        this.active_game.enter_room();
-        // TODO
+    public void play(){ // inutile ?
+        this.active_game.play();
     }
 
     public Stats getStatistics() {
