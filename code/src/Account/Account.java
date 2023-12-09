@@ -3,23 +3,45 @@ package Account;
 import Game.Game;
 import Entity.Avatar;
 import Entity.Inventory;
+import io.UserInput;
+import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
+
 
 public class Account {
     private int tokens;
     private Stats statistics;
-    private Game active_game;
+    private Avatar player;
 
     public Account() {
         this.tokens = 0;
         this.statistics = new Stats();
-        // création Game
-        Inventory inv = new Inventory();
-        Avatar player = new Avatar("anon", 20, 5, 5, inv); // garder les stats de base dans un autre fichier ?
-        this.active_game = new Game(player);
+        this.player = createAvatar();
     }
 
-    public void play(){ // inutile ?
-        this.active_game.play();
+    /**
+     * Création de l'avatar du joueur pour la partie, avec nom choisi, et amélioré selon le nombre de tokens récupéré lors de précédentes parties (+1 aux stats pour 10 tokens)
+     * @return Avatar du joueur
+     */
+    private Avatar createAvatar(){
+        
+        String name = UserInput.getInput("Nom du joueur ?");
+        Inventory inv = new Inventory();
+        int tokenUpgrade = getTokens() / 10;
+        Avatar player = new Avatar(name, 20 + tokenUpgrade, 5 + tokenUpgrade, 5 + tokenUpgrade, inv);
+        System.out.println(player);
+        return player;
+    }
+
+    public void play(){
+        Game activeGame = new Game(player);        
+        String choice = UserInput.getInput("Lancer une nouvelle partie (O/N) ?");
+        while (choice.charAt(0) == 'O') {
+            activeGame.setRoom_nb(0);
+            System.out.println("Lancement d'un nouveau donjon...");
+            this.tokens += activeGame.play();
+            choice = UserInput.getInput("Lancer une nouvelle partie (O/N) ?");
+        }
+        System.out.println("Arrêt du jeu...");
     }
 
     public Stats getStatistics() {

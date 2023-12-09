@@ -7,9 +7,6 @@ public class StrenghtConsumable extends Consumable{
 
     public StrenghtConsumable(String name, int effect, int price){
         super(name, effect, price);
-        if(this.getEffect() < 0 || this.getEffect() > 1){
-            throw new IllegalArgumentException("l'effect de force doit être entre 0 et 1");
-        }
     }
     
     @Override

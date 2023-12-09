@@ -69,7 +69,7 @@ public abstract class Entity {
    }
 
    public String toString(){
-      return String.format("[%s] - HP : %d/%d, ATK : %d, DEF : %d)", 
+      return String.format("[%s] - HP : %d/%d, ATK : %d, DEF : %d", 
          getName(), getHP(), getMaxHP(), getAttack(), getDefense());
    }
 

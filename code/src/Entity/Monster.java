@@ -2,26 +2,21 @@ package Entity;
 import java.lang.Math;
 
 public class Monster extends Entity {
-   private String type;
    private int reward;
 
    public Monster (int HP, int attack, int defense, String type, int reward) {
       super (HP, attack, defense, type);
-      this.type = type;
       this.reward = reward;
    }
 
    @Override
    public int getAttackPower() {
-      double attackEfficiency = (Math.random() % 0.1); 
-      return (int)(this.getAttack() * (0.6 + attackEfficiency));
+      double attackEfficiency = (Math.random() % 0.2) - 0.1; 
+      return (int)(this.getAttack() * (6 * attackEfficiency));
    }
    /*
    les monstres de bases ont une puissance d'attaque entre 60% et 160%
    */
-   public String getType() {
-      return type;
-   }
    public int getReward() {
       return reward;
    }

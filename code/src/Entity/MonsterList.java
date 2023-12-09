@@ -1,33 +1,26 @@
 package Entity;
+// TODO : avoir un endroit ou les stats possibles des != types de monstres sont décrites
+public class MonsterList { // TODO : intégrer les monstres spéciaux au générateur
 
-import java.util.ArrayList;                     // Permet l'utilisation des listes
-
-
-
-public class MonsterList {
-    
-    public static ArrayList<Monster> allMonsters()
-    {
-        ArrayList<Monster> monster_list = new ArrayList<Monster>();
-        double randomNumber;
+    /**
+     * générateur de monstre
+     * @return monstre généré avec type et stats aléatoires
+     */
+    public static Monster generateMonster(){
         Monster newMonster;
-        
-        for(int i = 1; i < 20 ; i++){ 
-            randomNumber = Math.random();
-            int randomMonsterId = (int)(randomNumber*3+1); 
-            switch (randomMonsterId) {
-                case 1:
-                    newMonster = new Monster(10 + (int)(randomNumber*15), 1 + (int)(randomNumber*8),(int)(randomNumber*2), "Squelette", (int)(randomNumber*3));
-                    break;
-                case 2:
-                    newMonster = new Monster(10 + (int)(randomNumber*30), 1 + (int)(randomNumber*4),(int)(randomNumber*5), "Zombie", (int)(randomNumber*3));
+        double randomNumber = Math.random();
+        int randomMonsterId = (int)(randomNumber*3+1); 
+        switch (randomMonsterId) {
+            case 1:
+                newMonster = new Monster(10 + (int)(randomNumber*15), 1 + (int)(randomNumber*8),(int)(randomNumber*2), "Squelette", (int)(randomNumber*3));
                 break;
-                default:                // Le cas 3.
-                    newMonster = new Monster(10 + (int)(randomNumber*20), 1 + (int)(randomNumber*6),(int)(randomNumber*3), "Araignée", (int)(randomNumber*3));
-            }
-            monster_list.add(newMonster);
+            case 2:
+                newMonster = new Monster(10 + (int)(randomNumber*30), 1 + (int)(randomNumber*4),(int)(randomNumber*5), "Zombie", (int)(randomNumber*3));
+            break;
+            default:                // Le cas 3.
+                newMonster = new Monster(10 + (int)(randomNumber*20), 1 + (int)(randomNumber*6),(int)(randomNumber*3), "Araignée", (int)(randomNumber*3));
         }
-        
-        return monster_list;
+
+        return newMonster;
     }
 }

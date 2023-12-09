@@ -19,53 +19,28 @@ public class Fight implements Event {
 
     public void fill(int nbRoom)
     {
-        //Variables
-            ArrayList<Monster> monsters = MonsterList.allMonsters();
-            double dice = Math.random();                             // Variables contenant un réel généré aléatoirement entre 0 et 1
-            int ind = (int)(dice*monsters.size());                   // Choisit aléatoirement un premier monstre 
-
-        //Début
-
-            if (nbRoom <= 3)                                         // les 3 premières salles
+        if (nbRoom <= 3)                                         // les 3 premières salles
+        {
+            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+        }
+        else if(nbRoom <= 6)                                     // les 3 salles suivantes
             {
-                enemies.add(monsters.get(ind));                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            }
-            else if(nbRoom <= 6)                                     // les 3 salles suivantes
-                {
-                enemies.add(monsters.get(ind));                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-                dice = Math.random();                              
-                ind = (int)(dice*monsters.size());                   // sélectionne un nouveau monstre
-                enemies.add(monsters.get(ind));                      // Attribue le monstre tiré aléatoirement à la ligne précédente, à cette salle
-            }
-            else if(nbRoom <= 10)                                   // les 4 salles suivantes
-            {
-                enemies.add(monsters.get(ind));                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-
-                dice = Math.random();
-                ind = (int)(dice*monsters.size());                   // sélectionne un deuxième monstre
-                enemies.add(monsters.get(ind));                      // Attribue le deuxième monstre à cette salle
-
-                dice = Math.random();
-                ind = (int)(dice*monsters.size());                   // sélectionne un troisième monstre
-                enemies.add(monsters.get(ind));                      // Attribue le troisième monstre à cette salle
-            }
-            else if(nbRoom <= 15)                                    // les 5 salles suivantes
-            {
-                enemies.add(monsters.get(ind));                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-
-                dice = Math.random();
-                ind = (int)(dice*monsters.size());                   // sélectionne un deuxième monstre
-                enemies.add(monsters.get(ind));                      // Attribue le deuxième monstre à cette salle
-
-                dice = Math.random();
-                ind = (int)(dice*monsters.size());                   // sélectionne un troisième monstre
-                enemies.add(monsters.get(ind));                      // Attribue le troisième monstre à cette salle
-
-                dice = Math.random();
-                ind = (int)(dice*monsters.size());                   // sélectionne un quatrième monstre
-                enemies.add(monsters.get(ind));                      // Attribue le quatrième monstre à cette salle
-            }
-        //Fin
+            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre tiré aléatoirement à la ligne précédente, à cette salle
+        }
+        else if(nbRoom <= 10)                                   // les 4 salles suivantes
+        {
+            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterList.generateMonster());                      // Attribue le deuxième monstre à cette salle
+            enemies.add(MonsterList.generateMonster());                      // Attribue le troisième monstre à cette salle
+        }
+        else if(nbRoom <= 15)                                    // les 5 salles suivantes
+        {
+            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterList.generateMonster());                      // Attribue le deuxième monstre à cette salle
+            enemies.add(MonsterList.generateMonster());                      // Attribue le troisième monstre à cette salle                              
+            enemies.add(MonsterList.generateMonster());                      // Attribue le quatrième monstre à cette salle
+        }
     }
 
 
@@ -77,21 +52,28 @@ public class Fight implements Event {
         int monsterRoll = 0;
         int montantDgts = 0;
 
-        while(this.enemies.size() !=0 && player.is_alive()){
+        System.out.println("Vous rencontrez des monstres ! ");
+        for (Monster monster : this.enemies) {
+            System.out.println(String.format("\t- %s", monster));
+        }
+
+        while(this.enemies.size() != 0 && player.is_alive()){
+            System.out.println("Entrée en combat...");
             currentMonster = this.enemies.get(0);
 
             while(currentMonster.is_alive() && player.is_alive()){
-
+                System.out.println(player);
+                System.out.println(currentMonster);
+                System.out.println("Appuyez sur une touche pour lancer le dé...");
+                clavier.nextLine();
                 do{
                     playerRoll = (int)(Math.random()*6 + 1);
 
                     monsterRoll = (int)(Math.random()*6 + 1);
                 }while(playerRoll == monsterRoll);
 
-                System.out.println("Vous avez fait " + playerRoll + " au lancer de dé");
-                System.out.println("Le monstre a fait " + monsterRoll + " au lancer de dé");
-
-
+                System.out.println(String.format("Vous avez fait %d au lancer de dé", playerRoll));
+                System.out.println(String.format("Le monstre a fait %d au lancer de dé", monsterRoll));
 
                 if(playerRoll < monsterRoll){
                     System.out.println("Vous avez perdu le lancer de dé!");
@@ -101,7 +83,7 @@ public class Fight implements Event {
                     if(montantDgts < 1) montantDgts = 1;
 
                     player.setHP(player.getHP()-montantDgts);
-                    System.out.println("Vous subissez " + montantDgts + " dégâts!");
+                    System.out.println(String.format("Vous subissez %d dégâts!", montantDgts));
                     clavier.nextLine();
 
                 }else{
@@ -111,14 +93,14 @@ public class Fight implements Event {
                     montantDgts = player.getAttackPower() - currentMonster.getDefense() + 1 ;
                     if(montantDgts < 1) montantDgts = 1;
                     
-                    currentMonster.setHP(player.getHP()-montantDgts);
-                    System.out.println("Vous infligez " + montantDgts + " dégâts!");
+                    currentMonster.setHP(currentMonster.getHP()-montantDgts);
+                    System.out.println(String.format("Vous infligez %d dégâts à [%s]!", montantDgts, currentMonster.getName()));
                     clavier.nextLine();
                 }
 
             }
             if(player.is_alive()){
-                System.out.println("Vous avez tué " + currentMonster.getType());
+                System.out.println(String.format("Vous avez tué [%s]", currentMonster.getName()));
 
             }
             this.enemies.remove(0);

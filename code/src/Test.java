@@ -1,7 +1,6 @@
 import Item.*;
 import Entity.*;
 
-
 public class Test {
     public static void main(String[] args) throws Exception {
         System.out.println("Test equipping joueur :");
@@ -15,6 +14,11 @@ public class Test {
         System.out.println(player.toString());
         objet.unuse(player);
         System.out.println(player.toString());
+
+        System.out.println("\nListe de monstre :");
+        for (int i = 0 ; i < 10 ; i++) {
+            System.out.println(MonsterList.generateMonster());
+        }
     }
 }
 

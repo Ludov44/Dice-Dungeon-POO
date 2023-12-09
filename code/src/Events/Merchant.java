@@ -48,25 +48,29 @@ public class Merchant implements Event{
         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à l'étalage du marcha
     }
 
+    @Override
+    public int getId() {
+        return id;
+    }
 
     @Override
     public void trigger(Avatar player) 
     {
-    //Variables
+        //Variables
         Scanner clavier = new Scanner(System.in);
         String choix = "";
-    // Début
-        System.out.println("Vous avez trouvé un Marchand !");                                      // Affichage utilisateur
+        // Début
+        System.out.println("Vous avez trouvé un Marchand !\nItems en vente :\n");                                      // Affichage utilisateur
         
         for(Item i : items)
         {
-            System.out.println("\t - Item trouvé :" + i.toString());                                // Affichage utilisateur pour les items
+            System.out.println(String.format("\t - %s", i.toString()));                                // Affichage utilisateur pour les items
         }
 
-        while (choix!="1" || choix != "2"|| choix != "3" || choix != "s" || choix != "S") {
-           System.out.println("/t - Tapez 1, 2 ou 3 pour achetez l'item voulu, tapez s si aucun item vous intéresse.");    // Proposition utilisateur
-            choix = clavier.nextLine();                                                                 // Lecture de la réponse de l'utilisateur
-         }
+        do {
+            System.out.println("/t - Tapez 1, 2 ou 3 pour achetez l'item voulu, tapez s si aucun item vous intéresse.");    // Proposition utilisateur
+            choix = clavier.nextLine();   
+        } while (choix!="1" || choix != "2"|| choix != "3" || choix != "s" || choix != "S");
        
         if(choix != "s" && choix != "S")
         {
@@ -83,11 +87,5 @@ public class Merchant implements Event{
         
         clavier.close();
         //Fin
-        }
-
-        @Override
-        public int getId() {
-            return id;
-        }
-        
-    }
+    }     
+}

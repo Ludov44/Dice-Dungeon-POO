@@ -80,12 +80,15 @@ public class Room{
             this.events.get(eventNumber).trigger(player);
             
             if(player.is_dead()){ // Si le joueur est mort, quitte la room
-                return false;
+                throw new PlayerDead("player is dead");
             }
-
 
             return true;
         }
+    }
+
+    public int eventsRemaining(){
+        return this.events.size();
     }
     /*
     public void quit(Avatar player){

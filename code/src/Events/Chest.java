@@ -1,12 +1,12 @@
 package Events;
 
+import java.util.ArrayList;                     // Permet l'utilisation des listes
+import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
+
 import Entity.Avatar;
 import Item.Equippable;
 import Item.Item;
 import Item.ItemList;
-import java.util.ArrayList;                     // Permet l'utilisation des listes
-import java.lang.Math;                          // Permet de générer un nombre random entre 0 et 1
-import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
 
 public class Chest implements Event {
    private int money;                          
@@ -136,20 +136,22 @@ public class Chest implements Event {
       Scanner clavier = new Scanner(System.in);
       String choix = "";
       // Début
-      while (choix!="O" || choix != "o"|| choix != "N" || choix != "n") {
-         System.out.println("Vous avez trouvé un coffre !");                                          // Affichage utilisateur
-         System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");        // Proposition utilisateur
-         choix = clavier.nextLine();    // Lecture de la réponse de l'utilisateur
-      }
-                                                                     
+      do {
+         System.out.println("Vous avez trouvé un coffre !");                         // Affichage utilisateur
+         System.out.println("Taper O si vous voulez l'ouvrir, Tapez N sinon");       // Proposition utilisateur
+         choix = clavier.nextLine();                                                   // Lecture de la réponse de l'utilisateur
+         System.out.println(choix);
+      } while (choix != "O" && choix != "o" && choix != "N" && choix != "n");
+
+      System.out.println("Contenu du coffre :");     
       if(choix == "o" || choix == "O" )                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
          if (this.getMoney() > 0) {                                                                  
-            System.out.println("Vous avez trouvé " + this.getMoney() +  " coins dans le coffre");    // Affichage utilisateur pour les coins
+            System.out.println(String.format("\t - Vous avez trouvé %d coins dans le coffre", getMoney()));    // Affichage utilisateur pour les coins
             player.getInv().setMoney(this.getMoney() + player.getInv().getMoney());                                         // Ajoute la money à l'inventaire de l'avatar
          }
          for (Item item : items) {
-            System.out.println("\t - Item trouvé :" + item.toString());                              // Affichage utilisateur pour les items
+            System.out.println(String.format("\t - Item trouvé : %s", item.toString()));                              // Affichage utilisateur pour les items
             if (item.getItemType() == 1 || item.getItemType() == 2) {
                player.getInv().addItem( (Equippable) item);                                          // Ajoute les items à l'inventaire de l'avatar, si ce sont des Equippable
             }
@@ -159,7 +161,7 @@ public class Chest implements Event {
       {
          System.out.println("Le coffre est abandonné");                                            // Affichage utilisateur
       }
-      clavier.close();
       //Fin
+      clavier.close();
     }
 }

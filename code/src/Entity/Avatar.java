@@ -39,6 +39,6 @@ public class Avatar extends Entity {
 
    @Override
    public String toString(){
-      return String.format(super.toString() + " (Inventory : %s)", getInv().toString());
+      return String.format(super.toString() + " (Inventory : %s)", getInv());
    }  
 }

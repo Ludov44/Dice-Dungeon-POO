@@ -2,6 +2,14 @@ package Entity;
 
 public class ConfusedMonster extends Monster {
 
+   /**
+    * Monstre qui à 40% de chance de manquer son attaque
+    * @param HP
+    * @param attack
+    * @param defense
+    * @param type
+    * @param reward
+    */
    public ConfusedMonster(int HP, int attack, int defense, String type, int reward) {
       super (HP, attack, defense, type, reward);
    }
