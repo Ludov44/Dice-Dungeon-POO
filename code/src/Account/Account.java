@@ -4,7 +4,6 @@ import Game.Game;
 import Entity.Avatar;
 import Entity.Inventory;
 import io.UserInput;
-import java.util.Scanner;                       // Permet les affichages/saisie utilisateurs
 
 
 public class Account {

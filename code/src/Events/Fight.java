@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import Entity.Avatar;
 import Entity.Monster;
-import Entity.MonsterList;
+import Entity.MonsterGen;
 
 public class Fight implements Event {
     ArrayList<Monster> enemies;
@@ -21,25 +21,25 @@ public class Fight implements Event {
     {
         if (nbRoom <= 3)                                         // les 3 premières salles
         {
-            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
         }
         else if(nbRoom <= 6)                                     // les 3 salles suivantes
             {
-            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre tiré aléatoirement à la ligne précédente, à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre tiré aléatoirement à la ligne précédente, à cette salle
         }
         else if(nbRoom <= 10)                                   // les 4 salles suivantes
         {
-            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            enemies.add(MonsterList.generateMonster());                      // Attribue le deuxième monstre à cette salle
-            enemies.add(MonsterList.generateMonster());                      // Attribue le troisième monstre à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le deuxième monstre à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le troisième monstre à cette salle
         }
         else if(nbRoom <= 15)                                    // les 5 salles suivantes
         {
-            enemies.add(MonsterList.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            enemies.add(MonsterList.generateMonster());                      // Attribue le deuxième monstre à cette salle
-            enemies.add(MonsterList.generateMonster());                      // Attribue le troisième monstre à cette salle                              
-            enemies.add(MonsterList.generateMonster());                      // Attribue le quatrième monstre à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le deuxième monstre à cette salle
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le troisième monstre à cette salle                              
+            enemies.add(MonsterGen.generateMonster());                      // Attribue le quatrième monstre à cette salle
         }
     }
 
