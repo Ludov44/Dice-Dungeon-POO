@@ -21,7 +21,7 @@ public abstract class Entity {
     * @return damage dealt to target Entity
     */
    public int attack(Entity target){
-      int damage = Math.max(0, this.getAttackPower() - target.getDefense());
+      int damage = Math.max(1, this.getAttackPower() - target.getDefense());
       target.setHP(target.getHP() - damage);
       return damage;
    }

@@ -26,7 +26,7 @@ public class Avatar extends Entity {
     * @param item
     */
    public void addItem(Equippable item){
-      if (UserInput.getChoice(String.format("Voulez-vous equiper cet item (O/N) ? %s", item.toString()))) {       // TODO : afficher current equipped
+      if (UserInput.getChoice(String.format("Voulez-vous equiper cet item (O/N) ? %s", item.toString()), 'O')) {       // TODO : afficher current equipped ?
          item.use(this);
          System.out.println("item équipé");
       }

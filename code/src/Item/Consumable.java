@@ -42,5 +42,6 @@ public abstract class Consumable implements Item{
     public int getBonus() {
         return this.effect;
     }
- 
+
+    public abstract Object clone();
 }

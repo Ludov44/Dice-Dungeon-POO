@@ -10,4 +10,6 @@ public interface Item {
     public String getName();
 
     public int getItemType();
+
+    public Object clone();
 }

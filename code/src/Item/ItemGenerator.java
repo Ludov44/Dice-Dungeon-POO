@@ -3,9 +3,25 @@ package Item;
 import java.util.ArrayList;
 
 
-public class ItemList{
+public class ItemGenerator{
 
-    public final static ArrayList<Item> allObjects = ItemList.generateObjects();
+    public final static ArrayList<Item> allObjects = ItemGenerator.generateObjects();
+
+    /**
+     * @param ind
+     * @return Copie de l'item à l'index ind dans allObjects
+     */
+    public static Item getItemAtIndex(int ind){
+        return (Item) allObjects.get(ind).clone();
+    }
+
+    /**
+     * @return Copie d'un item aléatoire dans la liste des items de allObjects
+     */
+    public static Item getRandomItem(){
+        int ind = (int)(Math.random()*allObjects.size());
+        return getItemAtIndex(ind);
+    }
 
     public static ArrayList<Item> generateObjects(){
         Item bandage = new HealthConsumable("Bandage", 5, 1);

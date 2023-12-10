@@ -5,7 +5,7 @@ import java.util.ArrayList;                     // Permet l'utilisation des list
 import Entity.Avatar;
 import Item.Equippable;
 import Item.Item;
-import Item.ItemList;
+import Item.ItemGenerator;
 import io.UserInput;
 
 public class Chest implements Event {
@@ -83,11 +83,7 @@ public class Chest implements Event {
     */
     public void fill()
     {
-      ArrayList<Item> allItems = ItemList.allObjects;
       double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
-      int ind = (int)(Math.random()*allItems.size());                    // Choisit aléatoirement un premier item 
-
-      //Début
 
       if (dice < 0.25)                                         // coffre contenant 8 coins et 0 item : 25% de probabilités
       {
@@ -96,28 +92,19 @@ public class Chest implements Event {
       else if(dice < 0.60)                                     // coffre contenant 6 coins et 1 item : 35% de probabilités
       {
          setMoney((int)(baseReward*0.75));                  // Attribue 6 coins à ce coffre
-         items.add(allItems.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
+         items.add(ItemGenerator.getRandomItem());                       
       }
       else if(dice < 0.90)                                     // coffre contenant 4 coins et 2 items : 30% de probabilités
       {
          setMoney((int)(baseReward*0.5));                   // Attribue 4 coins à ce coffre
-         items.add(allItems.get(ind));                      // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
-
-         dice = Math.random();                              
-         ind = (int)(dice*allItems.size());                  // sélectionne un nouvel item
-         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         items.add(ItemGenerator.getRandomItem());                      
+         items.add(ItemGenerator.getRandomItem());                       
       }
       else                                                     // coffre contenant 0 coins et 3 items : 10% de probabilités
       {
-         items.add(allItems.get(ind));                       // Attribue l'item, tiré aléatoirement au début de la méthode, à ce coffre
-
-         dice = Math.random();
-         ind = (int)(dice*allItems.size());                  // sélectionne un nouvel item
-         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
-
-         dice = Math.random();
-         ind = (int)(dice*allItems.size());                  // sélectionne un troisième item
-         items.add(allItems.get(ind));                       // Attribue l'item tiré aléatoirement à la ligne précédente à ce coffre
+         items.add(ItemGenerator.getRandomItem());                       
+         items.add(ItemGenerator.getRandomItem());                       
+         items.add(ItemGenerator.getRandomItem());                       
       //Fin
       }
    }
@@ -136,7 +123,7 @@ public class Chest implements Event {
       System.out.println(player);
       System.out.println("Vous avez trouvé un coffre !");                         // Affichage utilisateur
 
-      if(UserInput.getChoice("Ouvrir le coffre (O/N) ?"))                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
+      if(UserInput.getChoice("Ouvrir le coffre (O/N) ?", 'O'))                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
       {
          System.out.println("Contenu du coffre :");     
          if (this.getMoney() > 0) {                                                                  

@@ -29,7 +29,7 @@ public class Armor extends Equippable{
     public void unuse(Avatar player){
         this.setIsEquip(false);
         player.setDefense(player.getDefense() - this.getBonus());
-        System.out.println(String.format("Unequipped armor : %s", this.toString()));
+        System.out.println(String.format("Retiré armure : %s", this.toString()));
     }
 
     @Override
@@ -39,5 +39,10 @@ public class Armor extends Equippable{
             res += " [E]";
         }
         return res;
+    }
+
+    @Override
+    public Object clone(){
+        return new Armor(getName(), getPrice(), getBonus());
     }
 }

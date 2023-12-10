@@ -62,7 +62,12 @@ public class Game {
      */
     public void enter_room() throws PlayerDead{
         this.create_room();
-        System.out.println(String.format("ROOM %d ---> entrée", this.getRoom_nb()));
+        if (this.getRoom_nb() == 1) {
+            System.out.println(String.format("===> ROOM %d", this.getRoom_nb()));
+        }
+        else{
+            System.out.println(String.format("ROOM %d ===> ROOM %d", this.getRoom_nb() - 1, this.getRoom_nb()));
+        }
         UserInput.getInput("...");
         
         boolean inProgress = true;
@@ -72,7 +77,7 @@ public class Game {
 
             if(this.active_room.getEscape() && inProgress){
                 // Vérifie que l'utilisateur souhaite quitter la room
-                if (UserInput.getChoice("Voulez-vous sortir de la salle ou continuer à explorer (O/N) ? ")) {
+                if (UserInput.getChoice("Voulez-vous sortir de la salle ou continuer à explorer (O/N) ? ", 'O')) {
                     inProgress = false;
                 }
                 else{

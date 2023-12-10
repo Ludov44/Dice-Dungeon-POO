@@ -32,5 +32,10 @@ public class HealthConsumable extends Consumable{
     public int getItemType() {
         return itemType;
     }
+
+    @Override
+    public Object clone(){
+        return new HealthConsumable(getName(), getEffect(), getPrice());
+    }
 }
 

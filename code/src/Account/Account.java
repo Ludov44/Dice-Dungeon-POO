@@ -26,14 +26,14 @@ public class Account {
         String name = UserInput.getInput("Nom du joueur ?");
         Inventory inv = new Inventory();
         int tokenUpgrade = getTokens() / 10;
-        Avatar player = new Avatar(name, 20 + tokenUpgrade, 4 + tokenUpgrade, 4 + tokenUpgrade, inv);
+        Avatar player = new Avatar(name, 20 + tokenUpgrade, 3 + tokenUpgrade, 3 + tokenUpgrade, inv);
         System.out.println(player);
         return player;
     }
 
     public void play(){
         Game activeGame = new Game(player);        
-        while (UserInput.getChoice("Lancer une nouvelle partie (O/N) ?")) {
+        while (UserInput.getChoice("Lancer une nouvelle partie (O/N) ?", 'O')) {
             activeGame.setRoom_nb(0);
             System.out.println("Lancement d'un nouveau donjon...");
             this.tokens += activeGame.play();

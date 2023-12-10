@@ -36,4 +36,6 @@ public abstract class Equippable implements Item{
     }
 
     public abstract void unuse(Avatar player);    
+
+    public abstract Object clone();
 }

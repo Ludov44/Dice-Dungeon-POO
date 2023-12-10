@@ -50,10 +50,11 @@ public class Fight implements Event {
 
 
     @Override
-    public void trigger(Avatar player) { // TODO : bcp trop long
+    public void trigger(Avatar player) {
         Monster currentMonster;
         int playerRoll = 0;
         int monsterRoll = 0;
+        boolean autoMode = false;
 
         System.out.println("Vous rencontrez des monstres ! ");
         for (Monster monster : this.enemies) {
@@ -67,7 +68,12 @@ public class Fight implements Event {
             while(currentMonster.is_alive() && player.is_alive()){
                 System.out.println(player);
                 System.out.println(currentMonster);
-                UserInput.getInput("Appuyez sur une touche pour lancer le dé...");
+                if (!autoMode) {
+                    if (UserInput.getChoice("Appuyez sur une touche pour lancer le dé... (A pour combat automatique)", 'A')) {
+                        autoMode = true;
+                    }
+                }
+                
                 do{
                     playerRoll = (int)(Math.random()*6 + 1);
 
@@ -81,13 +87,13 @@ public class Fight implements Event {
                     System.out.println("Vous avez perdu le lancer de dé!");
 
                     System.out.println(String.format("Vous subissez %d dégâts!", currentMonster.attack(player)));
-                    UserInput.getInput("...");
+                    if (!autoMode) {UserInput.getInput("...");}
 
                 }else{
                     System.out.println("Vous avez gagné le lancer de dé!");
 
                     System.out.println(String.format("Vous infligez %d dégâts à [%s]!", player.attack(currentMonster), currentMonster.getName()));
-                    UserInput.getInput("...");
+                    if (!autoMode) {UserInput.getInput("...");}
                 }
 
             }

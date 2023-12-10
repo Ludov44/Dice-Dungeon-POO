@@ -1,5 +1,6 @@
 package Entity;
-// TODO : avoir un endroit ou les stats possibles des != types de monstres sont décrites
+// TODO : avoir un endroit ou les stats possibles des différents types de monstres sont décrites
+// TODO : révisions des stats possibles
 public class MonsterGenerator { // TODO : intégrer les monstres spéciaux au générateur
 
     /**

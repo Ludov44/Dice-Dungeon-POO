@@ -35,4 +35,9 @@ public class StrenghtConsumable extends Consumable{
     public String toString(){
         return String.format("[%s] Force +%d (value = %d)", getName(), getBonus(), getPrice());
     }
+
+    @Override
+    public Object clone(){
+        return new StrenghtConsumable(getName(), getEffect(), getPrice());
+    }
 }

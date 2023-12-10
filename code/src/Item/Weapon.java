@@ -24,7 +24,7 @@ public class Weapon extends Equippable{
     public void unuse(Avatar player){
         this.setIsEquip(false);
         player.setbaseAttack(player.getbaseAttack() - this.getBonus());
-        System.out.println(String.format("Unequipped weapon : %s", this.toString()));
+        System.out.println(String.format("Retiré arme : %s", this.toString()));
     }
 
     @Override
@@ -39,5 +39,10 @@ public class Weapon extends Equippable{
             res += " [E]";
         }
         return res;
+    }
+
+    @Override
+    public Object clone(){
+        return new Weapon(getName(), getPrice(), getBonus());
     }
 }
