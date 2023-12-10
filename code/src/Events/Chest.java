@@ -150,8 +150,8 @@ public class Chest implements Event {
                player.addItem( (Equippable) item);
             }
             else {
-               item.use(player);
                System.out.println(String.format("Consommable utilisé : %s", item.toString()));
+               item.use(player);
             }
          }
       }

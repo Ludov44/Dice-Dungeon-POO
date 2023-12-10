@@ -34,7 +34,7 @@ public class Weapon extends Equippable{
 
     @Override
     public String toString(){
-        String res = String.format("[%s] Weapon +%d", getName(), getBonus());
+        String res = String.format("[%s] Weapon +%d (value = %d)", getName(), getBonus(), getPrice());
         if (this.getIsEquip()) {
             res += " [E]";
         }

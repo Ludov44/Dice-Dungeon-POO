@@ -51,7 +51,7 @@ public class Room{
      * Renvoie true si un event a été déclenché et false si il ne reste que la sortie
      */
     public boolean explore(Avatar player) throws PlayerDead{
-        if(this.eventsRemaining() == 1){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
+        if(this.eventsRemaining() == 0){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
             if(!this.escape_found){
                 this.events.get(0).trigger(player);
                 System.out.println("La salle est vide, pour prenez la sortie...");
@@ -60,22 +60,13 @@ public class Room{
             return false;
         }
         else{ //Sinon on tire un élément au hasard dans la room
-            int eventNumber;
-
-            if(this.escape_found){ //Si la sortie a été trouvé, on ne regarde pas le dernier Event de la liste car c'est forcément la sortie
-                eventNumber = (int)(Math.random()*this.eventsRemaining() - 1);
-            }else{
-                eventNumber = (int)(Math.random()*this.eventsRemaining());
-            }
+            int eventNumber = (int)(Math.random()*this.eventsRemaining());
 
             if(this.events.get(eventNumber).getId() == 4){ //Si on a trouvé la sortie, on la déplace à la fin de la liste et on change l'attribut escape_found
-
                 this.escape_found = true;
                 this.events.add(this.events.get(eventNumber));
-                this.events.remove(eventNumber);
-                eventNumber = this.events.size() - 1;
-                
             }
+
             this.events.get(eventNumber).trigger(player);
             this.events.remove(eventNumber);
             
@@ -88,7 +79,12 @@ public class Room{
     }
 
     public int eventsRemaining(){
-        return this.events.size();
+        if (escape_found) {
+            return this.events.size() - 1;
+        }
+        else {
+            return this.events.size();
+        }
     }
     /*
     public void quit(Avatar player){

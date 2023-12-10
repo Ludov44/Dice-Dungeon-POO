@@ -33,6 +33,6 @@ public class StrenghtConsumable extends Consumable{
 
     @Override
     public String toString(){
-        return String.format("[%s] Force +%d", getName(), getBonus());
+        return String.format("[%s] Force +%d (value = %d)", getName(), getBonus(), getPrice());
     }
 }

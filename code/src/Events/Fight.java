@@ -50,7 +50,7 @@ public class Fight implements Event {
 
 
     @Override
-    public void trigger(Avatar player) {
+    public void trigger(Avatar player) { // TODO : bcp trop long
         Monster currentMonster;
         int playerRoll = 0;
         int monsterRoll = 0;
@@ -92,8 +92,8 @@ public class Fight implements Event {
 
             }
             if(player.is_alive()){
-                System.out.println(String.format("Vous avez tué [%s]", currentMonster.getName()));
-
+                System.out.println(String.format("Vous avez tué [%s] : Money +%d", currentMonster.getName(), currentMonster.getReward()));
+                player.getInv().setMoney(player.getInv().getMoney() + currentMonster.getReward()); // récupération de la récompense du monstre
             }
             this.enemies.remove(0);
             

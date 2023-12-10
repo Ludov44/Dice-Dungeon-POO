@@ -25,7 +25,7 @@ public class HealthConsumable extends Consumable{
 
     @Override
     public String toString(){
-        return String.format("[%s] Soin +%d", getName(), getBonus());
+        return String.format("[%s] Soin +%d (value = %d)", getName(), getBonus(), getPrice());
     }
 
     @Override
