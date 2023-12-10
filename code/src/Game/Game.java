@@ -94,7 +94,7 @@ public class Game {
      */
     public int play(){
         try {
-            while(this.getRoom_nb() < 15 && this.player.is_alive()){
+            while(this.getRoom_nb() < 15){
                 enter_room();
             }
             System.out.println("Félicitations! Vous êtes sortis du donjon");

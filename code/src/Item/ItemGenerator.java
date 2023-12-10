@@ -23,7 +23,7 @@ public class ItemGenerator{
         return getItemAtIndex(ind);
     }
 
-    public static ArrayList<Item> generateObjects(){
+    public static ArrayList<Item> generateObjects(){ // TODO : ajouter des items ? (exemple : amulettes pour up les HP)
         Item bandage = new HealthConsumable("Bandage", 5, 1);
         Item petiteH = new HealthConsumable("Petite potion de soin", 10, 2);
         Item normaleH = new HealthConsumable("Potion de soin", 15, 5);

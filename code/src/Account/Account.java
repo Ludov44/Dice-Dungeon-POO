@@ -32,11 +32,13 @@ public class Account {
     }
 
     public void play(){
-        Game activeGame = new Game(player);        
+        Game activeGame;        
         while (UserInput.getChoice("Lancer une nouvelle partie (O/N) ?", 'O')) {
-            activeGame.setRoom_nb(0);
+            activeGame = new Game(player); 
             System.out.println("Lancement d'un nouveau donjon...");
-            this.tokens += activeGame.play();
+            this.tokens += activeGame.play(); // lancement Game
+            System.out.println(String.format("Solde en tokens : %d", this.getTokens()));
+            this.player.setHP(this.player.getMaxHP()); // reset des pv du joueur
         }
         System.out.println("Arrêt du jeu...");
     }
