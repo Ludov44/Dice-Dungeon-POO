@@ -26,7 +26,7 @@ public class Account {
         String name = UserInput.getInput("Nom du joueur ?");
         Inventory inv = new Inventory();
         int tokenUpgrade = getTokens() / 10;
-        Avatar player = new Avatar(name, 20 + tokenUpgrade, 5 + tokenUpgrade, 5 + tokenUpgrade, inv);
+        Avatar player = new Avatar(name, 20 + tokenUpgrade, 4 + tokenUpgrade, 4 + tokenUpgrade, inv);
         System.out.println(player);
         return player;
     }

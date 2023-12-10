@@ -3,7 +3,6 @@ import Events.Event;
 import Exception.PlayerDead;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import Entity.Avatar;
 
@@ -52,21 +51,21 @@ public class Room{
      * Renvoie true si un event a été déclenché et false si il ne reste que la sortie
      */
     public boolean explore(Avatar player) throws PlayerDead{
-        if(this.events.size() == 1){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
+        if(this.eventsRemaining() == 1){ //Si il ne reste qu'un élément, alors il s'agit de la sortie de la room
             if(!this.escape_found){
-                this.events.get(1).trigger(player);
+                this.events.get(0).trigger(player);
+                System.out.println("La salle est vide, pour prenez la sortie...");
                 this.escape_found = true;
             }
             return false;
         }
         else{ //Sinon on tire un élément au hasard dans la room
-            Random randomNumber = new Random();
             int eventNumber;
 
             if(this.escape_found){ //Si la sortie a été trouvé, on ne regarde pas le dernier Event de la liste car c'est forcément la sortie
-                eventNumber = (randomNumber.nextInt(this.events.size()-1));
+                eventNumber = (int)(Math.random()*this.eventsRemaining() - 1);
             }else{
-                eventNumber = (randomNumber.nextInt(this.events.size()));
+                eventNumber = (int)(Math.random()*this.eventsRemaining());
             }
 
             if(this.events.get(eventNumber).getId() == 4){ //Si on a trouvé la sortie, on la déplace à la fin de la liste et on change l'attribut escape_found
@@ -74,10 +73,11 @@ public class Room{
                 this.escape_found = true;
                 this.events.add(this.events.get(eventNumber));
                 this.events.remove(eventNumber);
-                eventNumber = this.events.size();
+                eventNumber = this.events.size() - 1;
                 
             }
             this.events.get(eventNumber).trigger(player);
+            this.events.remove(eventNumber);
             
             if(player.is_dead()){ // Si le joueur est mort, quitte la room
                 throw new PlayerDead("player is dead");

@@ -21,7 +21,7 @@ public class Armor extends Equippable{
                 item.unuse(player);
             }
         }
-        this.setIsEquip(true);;
+        this.setIsEquip(true);
         player.setDefense(player.getDefense() + this.getBonus());
     }
 
@@ -29,10 +29,15 @@ public class Armor extends Equippable{
     public void unuse(Avatar player){
         this.setIsEquip(false);
         player.setDefense(player.getDefense() - this.getBonus());
+        System.out.println(String.format("Unequipped armor : %s", this.toString()));
     }
 
     @Override
     public String toString(){
-        return String.format("[%s] Armor +%d", getName(), getBonus());
+        String res = String.format("[%s] Armor +%d", getName(), getBonus());
+        if (this.getIsEquip()) {
+            res += " [E]";
+        }
+        return res;
     }
 }

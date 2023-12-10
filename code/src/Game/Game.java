@@ -3,12 +3,12 @@ package Game;
 
 import Entity.Avatar;
 import Room.Room;
+import io.UserInput;
 import Events.*;
 import Exception.PlayerDead;
 
 import java.util.ArrayList;
 import java.lang.Math;
-import java.util.Scanner;  
 
 
 public class Game {
@@ -62,30 +62,22 @@ public class Game {
      */
     public void enter_room() throws PlayerDead{
         this.create_room();
-        System.out.println(String.format("Vous entrez dans une nouvelle salle (room %d)...", this.getRoom_nb()));
+        System.out.println(String.format("ROOM %d ---> entrée", this.getRoom_nb()));
+        UserInput.getInput("...");
+        
         boolean inProgress = true;
         while(inProgress){
-            System.out.println(String.format("il reste %d évenements dans la salle", this.active_room.eventsRemaining()));
+            System.out.println(String.format("il reste %d évenements dans la salle (room %d)", this.active_room.eventsRemaining(), this.getRoom_nb()));
             inProgress = this.active_room.explore(this.player);
 
             if(this.active_room.getEscape() && inProgress){
-                System.out.println("Voulez-vous sortir de la salle ou continuer à explorer ? ");
-                Scanner clavier = new Scanner(System.in);
-                String choix = "";
-        
                 // Vérifie que l'utilisateur souhaite quitter la room
-                while (choix!="O" || choix != "o"|| choix != "N" || choix != "n") {
-                    System.out.println("Taper O si vous voulez passer à l'étage suivant, Tapez N sinon : ");
-                    choix = clavier.nextLine();    
-                }
-                if(choix == "o" || choix == "O" ) {
+                if (UserInput.getChoice("Voulez-vous sortir de la salle ou continuer à explorer (O/N) ? ")) {
                     inProgress = false;
                 }
-                else 
-                {
-                   System.out.println("Vous continuez d'explorer l'étage");
+                else{
+                    System.out.println("Vous continuez d'explorer l'étage");
                 }
-                clavier.close();
             }
 
         }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Entity.Avatar;
 import Entity.Monster;
-import Entity.MonsterGen;
+import Entity.MonsterGenerator;
 import io.UserInput;
 
 public class Fight implements Event {
@@ -19,27 +19,32 @@ public class Fight implements Event {
 
     public void fill(int nbRoom)
     {
+        int nbMonster;
         if (nbRoom <= 3)                                         // les 3 premières salles
         {
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
+            nbMonster = 1;
         }
         else if(nbRoom <= 6)                                     // les 3 salles suivantes
-            {
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre tiré aléatoirement à la ligne précédente, à cette salle
+        {
+            nbMonster = 2;
+
         }
         else if(nbRoom <= 10)                                   // les 4 salles suivantes
         {
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le deuxième monstre à cette salle
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le troisième monstre à cette salle
+            nbMonster = 3;
+
         }
         else if(nbRoom <= 15)                                    // les 5 salles suivantes
         {
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le monstre, tiré aléatoirement au début de la méthode, à cette salle
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le deuxième monstre à cette salle
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le troisième monstre à cette salle                              
-            enemies.add(MonsterGen.generateMonster());                      // Attribue le quatrième monstre à cette salle
+            nbMonster = 4;
+
+        }
+        else { // non utilisé pour le moment
+            nbMonster = 5;
+        }
+
+        for (int i = 0; i < nbMonster; i++) {
+            enemies.add(MonsterGenerator.generate());
         }
     }
 
@@ -49,7 +54,6 @@ public class Fight implements Event {
         Monster currentMonster;
         int playerRoll = 0;
         int monsterRoll = 0;
-        int montantDgts = 0;
 
         System.out.println("Vous rencontrez des monstres ! ");
         for (Monster monster : this.enemies) {
@@ -75,24 +79,14 @@ public class Fight implements Event {
 
                 if(playerRoll < monsterRoll){
                     System.out.println("Vous avez perdu le lancer de dé!");
-                    UserInput.getInput("...");
 
-                    montantDgts = currentMonster.getAttackPower() - player.getDefense() + 1 ;
-                    if(montantDgts < 1) montantDgts = 1;
-
-                    player.setHP(player.getHP()-montantDgts);
-                    System.out.println(String.format("Vous subissez %d dégâts!", montantDgts));
+                    System.out.println(String.format("Vous subissez %d dégâts!", currentMonster.attack(player)));
                     UserInput.getInput("...");
 
                 }else{
                     System.out.println("Vous avez gagné le lancer de dé!");
-                    UserInput.getInput("...");;
 
-                    montantDgts = player.getAttackPower() - currentMonster.getDefense() + 1 ;
-                    if(montantDgts < 1) montantDgts = 1;
-                    
-                    currentMonster.setHP(currentMonster.getHP()-montantDgts);
-                    System.out.println(String.format("Vous infligez %d dégâts à [%s]!", montantDgts, currentMonster.getName()));
+                    System.out.println(String.format("Vous infligez %d dégâts à [%s]!", player.attack(currentMonster), currentMonster.getName()));
                     UserInput.getInput("...");
                 }
 

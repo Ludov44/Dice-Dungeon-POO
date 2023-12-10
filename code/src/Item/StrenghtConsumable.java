@@ -15,14 +15,14 @@ public class StrenghtConsumable extends Consumable{
             throw new IllegalArgumentException("La potion est vide");
         }
         else{
-            player.setAttack(player.getAttack() + getEffect());
+            player.setbaseAttack(player.getbaseAttack() + getEffect());
             this.setEffect(0);
         }
     }
 
     public void stopEffect(Avatar player){ // ne sera pas utilisé ? - Raphaël
         if(this.getEffect() == 0){
-            player.setAttack(player.getAttack() - getEffect());
+            player.setbaseAttack(player.getbaseAttack() - getEffect());
         }
     }
 

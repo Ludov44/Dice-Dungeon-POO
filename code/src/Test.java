@@ -17,7 +17,7 @@ public class Test {
 
         System.out.println("\nListe de monstre :");
         for (int i = 0 ; i < 10 ; i++) {
-            System.out.println(MonsterGen.generateMonster());
+            System.out.println(MonsterGenerator.generate());
         }
     }
 }

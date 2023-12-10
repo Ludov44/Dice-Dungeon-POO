@@ -22,7 +22,11 @@ public class UserInput {
      * @return true si l'utilisateur accepte (O ou o) false sinon
      */
     public static boolean getChoice(String msg){
-        char choice = getInput(msg).charAt(0);
+        char choice = 'N';
+        String input = getInput(msg);
+        if (input.length() > 0) {
+            choice = input.charAt(0);
+        }
         return (choice == 'O' || choice == 'o');
     }
 
@@ -32,10 +36,11 @@ public class UserInput {
      * @return entrée utilisateur
      */
     public static int getInt(String msg){
-        int input;
-        System.out.println(msg);
-        Scanner scanner = new Scanner(System.in);
-        input = scanner.nextInt();
-        return input;
+        int choice = 0;
+        String input = getInput(msg);
+        if (input.length() > 0) {
+            choice = (int) input.charAt(0);
+        }
+        return choice;
     }
 }

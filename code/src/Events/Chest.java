@@ -83,9 +83,9 @@ public class Chest implements Event {
     */
     public void fill()
     {
-      ArrayList<Item> allItems = ItemList.allObjects();
+      ArrayList<Item> allItems = ItemList.allObjects;
       double dice = Math.random();                              // Variables contenant un réel généré aléatoirement entre 0 et 1, il décide quel type de coffre ce sera.
-      int ind = (int)(dice*allItems.size());                    // Choisit aléatoirement un premier item 
+      int ind = (int)(Math.random()*allItems.size());                    // Choisit aléatoirement un premier item 
 
       //Début
 
@@ -133,6 +133,7 @@ public class Chest implements Event {
      */
     public void trigger(Avatar player){
       // Début
+      System.out.println(player);
       System.out.println("Vous avez trouvé un coffre !");                         // Affichage utilisateur
 
       if(UserInput.getChoice("Ouvrir le coffre (O/N) ?"))                                                              // Vérifie que l'utilisateur souhaite ouvrir le coffre
@@ -145,7 +146,12 @@ public class Chest implements Event {
          for (Item item : items) {
             System.out.println(String.format("\t - Item trouvé : %s", item.toString()));                              // Affichage utilisateur pour les items
             if (item.getItemType() == 1 || item.getItemType() == 2) {
-               player.getInv().addItem( (Equippable) item);                                          // Ajoute les items à l'inventaire de l'avatar, si ce sont des Equippable
+               System.out.println(String.format("Equipement ajouté à l'inventaire : %s", item.toString()));
+               player.addItem( (Equippable) item);
+            }
+            else {
+               item.use(player);
+               System.out.println(String.format("Consommable utilisé : %s", item.toString()));
             }
          }
       }

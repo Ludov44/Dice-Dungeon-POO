@@ -11,14 +11,20 @@ public class Weapon extends Equippable{
 
     @Override
     public void use(Avatar player){
+        for (Equippable item : player.getInv().getContent()) {
+            if (item.getIsEquip() && item.getItemType() == this.getItemType()) {
+                item.unuse(player);
+            }
+        }
         this.setIsEquip(true);
-        player.setAttack(player.getAttack() + this.getBonus());;
+        player.setbaseAttack(player.getbaseAttack() + this.getBonus());;
     }
 
     @Override 
     public void unuse(Avatar player){
         this.setIsEquip(false);
-        player.setAttack(player.getAttack() - this.getBonus());
+        player.setbaseAttack(player.getbaseAttack() - this.getBonus());
+        System.out.println(String.format("Unequipped weapon : %s", this.toString()));
     }
 
     @Override

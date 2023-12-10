@@ -35,5 +35,9 @@ public abstract class Equippable implements Item{
         this.isEquip = bool;
     }
 
+    public String toString(){
+        return String.format(super.toString(), String.format(" (value = %d)", getPrice()));
+    }
+
     public abstract void unuse(Avatar player);    
 }

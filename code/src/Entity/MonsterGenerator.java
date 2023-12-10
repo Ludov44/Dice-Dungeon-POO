@@ -1,12 +1,12 @@
 package Entity;
 // TODO : avoir un endroit ou les stats possibles des != types de monstres sont décrites
-public class MonsterGen { // TODO : intégrer les monstres spéciaux au générateur
+public class MonsterGenerator { // TODO : intégrer les monstres spéciaux au générateur
 
     /**
      * générateur de monstre
      * @return monstre généré avec type et stats aléatoires
      */
-    public static Monster generateMonster(){
+    public static Monster generate(){
         Monster newMonster;
         double randomNumber = Math.random();
         int randomMonsterId = (int)(randomNumber*3+1); 

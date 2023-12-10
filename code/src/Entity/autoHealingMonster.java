@@ -7,15 +7,15 @@ public class AutoHealingMonster extends Monster {
     /**
      * Monstre qui a 20% de chance de se soigner d'un nombre de PV égal à healingCapacity
      * @param HP
-     * @param attack
+     * @param baseAttack
      * @param defense
      * @param type
      * @param reward
      * @param luck
      * @param healingCapacity
      */
-    public AutoHealingMonster (int HP, int attack, int defense, String type, int reward, int luck, int healingCapacity) {
-        super (HP, attack, defense, type, reward);
+    public AutoHealingMonster (int HP, int baseAttack, int defense, String type, int reward, int luck, int healingCapacity) {
+        super (HP, baseAttack, defense, type, reward);
         this.luck = luck;
         this.healingCapacity = healingCapacity;
             

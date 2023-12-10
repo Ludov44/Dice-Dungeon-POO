@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 public class ItemList{
 
-    public static ArrayList<Item> allObjects(){
+    public final static ArrayList<Item> allObjects = ItemList.generateObjects();
+
+    public static ArrayList<Item> generateObjects(){
         Item bandage = new HealthConsumable("Bandage", 5, 1);
         Item petiteH = new HealthConsumable("Petite potion de soin", 10, 2);
         Item normaleH = new HealthConsumable("Potion de soin", 15, 5);
