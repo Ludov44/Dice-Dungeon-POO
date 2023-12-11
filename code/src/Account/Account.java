@@ -26,7 +26,7 @@ public class Account {
         String name = UserInput.getInput("Nom du joueur ?");
         Inventory inv = new Inventory();
         int tokenUpgrade = getTokens() / 10;
-        Avatar player = new Avatar(name, 20 + tokenUpgrade, 3 + tokenUpgrade, 3 + tokenUpgrade, inv);
+        Avatar player = new Avatar(name, 25 + tokenUpgrade, 4 + tokenUpgrade, 4 + tokenUpgrade, inv);
         System.out.println(player);
         return player;
     }
@@ -38,7 +38,7 @@ public class Account {
             System.out.println("Lancement d'un nouveau donjon...");
             this.tokens += activeGame.play(); // lancement Game
             System.out.println(String.format("Solde en tokens : %d", this.getTokens()));
-            this.player.setHP(this.player.getMaxHP()); // reset des pv du joueur
+            this.player = this.createAvatar(); // reset du joueur
         }
         System.out.println("Arrêt du jeu...");
     }

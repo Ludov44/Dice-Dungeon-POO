@@ -21,7 +21,15 @@ public abstract class Entity {
     * @return damage dealt to target Entity
     */
    public int attack(Entity target){
-      int damage = Math.max(1, this.getAttackPower() - target.getDefense());
+      int damage = this.getAttackPower() - target.getDefense();
+      if (damage < 1) { // if attack is blocked, 50% chance to take no damage, and 50% to take 1 damage
+         if (Math.random() > 0.5) {
+            damage = 0;
+         }
+         else{
+            damage = 1;
+         }
+      }
       target.setHP(target.getHP() - damage);
       return damage;
    }
@@ -79,7 +87,7 @@ public abstract class Entity {
       this.defense = nb;
    }
 
-   protected int getAttackPower() {
+   public int getAttackPower() {
       return this.baseAttack;
    }
 

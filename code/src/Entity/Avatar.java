@@ -26,9 +26,9 @@ public class Avatar extends Entity {
     * @param item
     */
    public void addItem(Equippable item){
-      if (UserInput.getChoice(String.format("Voulez-vous equiper cet item (O/N) ? %s", item.toString()), 'O')) {       // TODO : afficher current equipped ?
+      if (UserInput.getChoice(String.format("Voulez-vous équiper cet item (O/N) ? %s", item.toString()), 'O')) {       // TODO : afficher current equipped ?
          item.use(this);
-         System.out.println("item équipé");
+         System.out.println(String.format("%s a bien été équipé", item.toString()));
       }
       this.getInv().addItem(item);
    }
@@ -42,8 +42,8 @@ public class Avatar extends Entity {
    }
 
    @Override
-   protected int getAttackPower() {
-      double attackEfficiency = Math.random() % 0.1;
+   public int getAttackPower() {
+      double attackEfficiency = Math.random() % 0.2 - 0.1;
 
       return (int) ((this.getbaseAttack() * (1 + attackEfficiency)));
    }

@@ -29,12 +29,12 @@ public class Armor extends Equippable{
     public void unuse(Avatar player){
         this.setIsEquip(false);
         player.setDefense(player.getDefense() - this.getBonus());
-        System.out.println(String.format("Retiré armure : %s", this.toString()));
+        System.out.println(String.format("Armure retirée => %s", this.toString()));
     }
 
     @Override
     public String toString(){
-        String res = String.format("[%s] Armor +%d (value = %d)", getName(), getBonus(), getPrice());
+        String res = String.format("[%s] DEF +%d (value = %d)", getName(), getBonus(), getPrice());
         if (this.getIsEquip()) {
             res += " [E]";
         }

@@ -72,12 +72,12 @@ public class Game {
         
         boolean inProgress = true;
         while(inProgress){
-            System.out.println(String.format("il reste %d évenements dans la salle (room %d)", this.active_room.eventsRemaining(), this.getRoom_nb()));
+            System.out.println(String.format("Il reste %d évenements dans la salle (room %d)", this.active_room.eventsRemaining(), this.getRoom_nb()));
             inProgress = this.active_room.explore(this.player);
 
-            if(this.active_room.getEscape() && inProgress){
+            if(this.active_room.getEscape() && inProgress && this.active_room.eventsRemaining() > 0){
                 // Vérifie que l'utilisateur souhaite quitter la room
-                if (UserInput.getChoice("Voulez-vous sortir de la salle ou continuer à explorer (O/N) ? ", 'O')) {
+                if (UserInput.getChoice("Voulez-vous sortir de la salle ou continuer à explorer (S/E) ? ", 'S')) {
                     inProgress = false;
                 }
                 else{

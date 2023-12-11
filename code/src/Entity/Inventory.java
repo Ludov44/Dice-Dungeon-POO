@@ -36,7 +36,7 @@ public class Inventory {
 
     @Override
     public String toString(){
-        String res = String.format("money = %d ; contents = {", getMoney());
+        String res = String.format("argent = %d ; objets = {", getMoney());
         for (int i = 0; i < this.contents.size(); i++) {
             res += String.format("%s", this.getContent().get(i).toString());
             if (i < this.contents.size() - 1) {

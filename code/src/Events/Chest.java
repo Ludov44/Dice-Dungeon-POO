@@ -146,6 +146,7 @@ public class Chest implements Event {
       {
          System.out.println("Le coffre est abandonné");                                            // Affichage utilisateur
       }
+      UserInput.getInput("...");
       //Fin
     }
 }

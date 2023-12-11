@@ -44,7 +44,7 @@ public class Fight implements Event {
         }
 
         for (int i = 0; i < nbMonster; i++) {
-            enemies.add(MonsterGenerator.generate());
+            enemies.add(MonsterGenerator.generate(nbRoom));
         }
     }
 
@@ -66,9 +66,9 @@ public class Fight implements Event {
             currentMonster = this.enemies.get(0);
 
             while(currentMonster.is_alive() && player.is_alive()){
-                System.out.println(player);
-                System.out.println(currentMonster);
                 if (!autoMode) {
+                    System.out.println(player);
+                    System.out.println(currentMonster);
                     if (UserInput.getChoice("Appuyez sur une touche pour lancer le dé... (A pour combat automatique)", 'A')) {
                         autoMode = true;
                     }
@@ -79,18 +79,20 @@ public class Fight implements Event {
 
                     monsterRoll = (int)(Math.random()*6 + 1);
                 }while(playerRoll == monsterRoll);
-
-                System.out.println(String.format("Vous avez fait %d au lancer de dé", playerRoll));
-                System.out.println(String.format("Le monstre a fait %d au lancer de dé", monsterRoll));
+                
+                if (!autoMode) {
+                    System.out.println(String.format("Vous avez fait %d au lancer de dé", playerRoll));
+                    System.out.println(String.format("Le monstre a fait %d au lancer de dé", monsterRoll));
+                }
 
                 if(playerRoll < monsterRoll){
-                    System.out.println("Vous avez perdu le lancer de dé!");
+                    if (!autoMode) {System.out.println("Vous avez perdu le lancer de dé!");}
 
                     System.out.println(String.format("Vous subissez %d dégâts!", currentMonster.attack(player)));
                     if (!autoMode) {UserInput.getInput("...");}
 
                 }else{
-                    System.out.println("Vous avez gagné le lancer de dé!");
+                    if (!autoMode) {System.out.println("Vous avez gagné le lancer de dé!");}
 
                     System.out.println(String.format("Vous infligez %d dégâts à [%s]!", player.attack(currentMonster), currentMonster.getName()));
                     if (!autoMode) {UserInput.getInput("...");}
@@ -98,8 +100,10 @@ public class Fight implements Event {
 
             }
             if(player.is_alive()){
-                System.out.println(String.format("Vous avez tué [%s] : Money +%d", currentMonster.getName(), currentMonster.getReward()));
+                System.out.println(String.format("Vous avez tué [%s] : argent + %d", currentMonster.getName(), currentMonster.getReward()));
                 player.getInv().setMoney(player.getInv().getMoney() + currentMonster.getReward()); // récupération de la récompense du monstre
+                System.out.println(player);
+                UserInput.getInput("...");
             }
             this.enemies.remove(0);
             

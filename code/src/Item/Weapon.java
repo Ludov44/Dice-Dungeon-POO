@@ -24,7 +24,7 @@ public class Weapon extends Equippable{
     public void unuse(Avatar player){
         this.setIsEquip(false);
         player.setbaseAttack(player.getbaseAttack() - this.getBonus());
-        System.out.println(String.format("Retiré arme : %s", this.toString()));
+        System.out.println(String.format("Arme retirée => %s", this.toString()));
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Weapon extends Equippable{
 
     @Override
     public String toString(){
-        String res = String.format("[%s] Weapon +%d (value = %d)", getName(), getBonus(), getPrice());
+        String res = String.format("[%s] ATK +%d (value = %d)", getName(), getBonus(), getPrice());
         if (this.getIsEquip()) {
             res += " [E]";
         }
