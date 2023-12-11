@@ -22,7 +22,7 @@ public abstract class Entity {
     */
    public int attack(Entity target){
       int damage = this.getAttackPower() - target.getDefense();
-      if (damage < 1) { // if attack is blocked, 50% chance to take no damage, and 50% to take 1 damage
+      if (damage < 1) { // if attack is blocked, 50% chance to deal no damage, and 50% to deal 1 damage
          if (Math.random() > 0.5) {
             damage = 0;
          }
