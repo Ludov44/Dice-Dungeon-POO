@@ -30,10 +30,6 @@ public class AutoHealingMonster extends Monster {;
             }
         }
    }
-
-    public int getLuck() {
-        return luck;
-    }
    
     @Override
     public int getAttackPower() {
