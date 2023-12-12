@@ -9,9 +9,8 @@ public class AllOrNothingMonster extends Monster {
     * @param defense
     * @param type
     * @param reward
-    * @param luck
     */
-   public AllOrNothingMonster (int HP, int baseAttack, int defense, String type, int reward, int luck) {
+   public AllOrNothingMonster (int HP, int baseAttack, int defense, String type, int reward) {
       super (HP, baseAttack, defense, type, reward);
    }
 
