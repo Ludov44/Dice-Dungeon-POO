@@ -24,7 +24,7 @@ public class Game {
         this.room_nb = 0;
     }
     /**
-     * Créer une room en remplissant une liste d'event aléatoirement.
+     * Création d'une room en remplissant une liste d'event aléatoirement.
      * Chaque room possède une sortie et possiblement des combats, des chests et des marchands
      */
     private void create_room(){
