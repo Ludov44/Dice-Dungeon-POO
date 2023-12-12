@@ -77,7 +77,10 @@ public class Room{
             return true;
         }
     }
-
+    /**
+     * Retourne le nombre d'événement dans la liste et si la sortie a été trouvée, ne la compte pas dedans
+     * @return Le nombre d'event restant
+     */
     public int eventsRemaining(){
         if (escape_found) {
             return this.events.size() - 1;
