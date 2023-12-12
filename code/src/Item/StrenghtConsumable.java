@@ -44,7 +44,7 @@ public class StrenghtConsumable extends Consumable{
 
     @Override
     public String toString(){
-        return String.format("[%s] ATK +%d (value = %d)", getName(), getBonus(), getPrice());
+        return String.format("[%s] ATK +%d (value = %d)", getName(), getEffect(), getPrice());
     }
 
     @Override

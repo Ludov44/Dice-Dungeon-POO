@@ -53,9 +53,25 @@ public class Merchant implements Event{
     public void trigger(Avatar player) // TODO : pouvoir vendre des items
     {
         int choice;
+        //boolean wannaSell = false;
         // Début
-        System.out.println("Vous avez trouvé un Marchand !\nItems en vente :");                                      // Affichage utilisateur
+        System.out.println("Vous avez trouvé un Marchand !");                                      // Affichage utilisateur
+        /*System.out.println("Voulez-vous vendre vos Items non-équipés, pour 50% de leurs values ? ");
+        wannaSell = UserInput.getChoice("Tapez O si vous le voulez, tapez autre chose sinon: ", 'O');
+        if(wannaSell){
+            for (Equippable i : player.getInv().getContent()) {
+                if(!(i.getIsEquip()))
+                {
+                    player.changeMoney((int)(i.getPrice()/2));
+                    player.getInv().getContent().remove(i);
+                }
+            }
+        }TODO*/
+
         
+
+
+        System.out.println("Items en vente :");
         do {
             for(int i = 0 ; i < items.size() ; i++)
             {
