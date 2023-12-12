@@ -23,25 +23,29 @@ public class ItemGenerator{
         return getItemAtIndex(ind);
     }
 
+    /**
+     * Créer les Items de la games
+     * @return La liste d'items
+     */
     public static ArrayList<Item> generateObjects(){ // TODO : ajouter des items ? (exemple : amulettes pour up les HP)
-        Item bandage = new HealthConsumable("Bandage", 5, 1);
-        Item petiteH = new HealthConsumable("Petite potion de soin", 10, 2);
-        Item normaleH = new HealthConsumable("Potion de soin", 15, 5);
-        Item grosseH = new HealthConsumable("Grosse potion de soin", 20, 10);
+        Item bandage = new HealthConsumable("Bandage", 4, 1);
+        Item petiteH = new HealthConsumable("Petite potion de soin", 6, 2);
+        Item normaleH = new HealthConsumable("Potion de soin", 10, 5);
+        Item grosseH = new HealthConsumable("Grosse potion de soin", 20, 12);
 
-        Item petiteS = new StrenghtConsumable("Petite potion de force", 5, 5);
-        Item normaleS = new StrenghtConsumable("Potion de force", 10, 10);
-        Item grosseS = new StrenghtConsumable("Grosse potion de force", 15, 15);
+        Item petiteS = new StrenghtConsumable("Petite potion de force", 2, 3);
+        Item normaleS = new StrenghtConsumable("Potion de force", 4, 8);
+        Item grosseS = new StrenghtConsumable("Grosse potion de force", 10, 12);
         
-        Item epee = new Weapon("épée", 10, 10);
-        Item hache = new Weapon("hache", 20, 15);
-        Item dague = new Weapon("dague", 5, 5);
-        Item lance = new Weapon("lance", 15, 12);
+        Item epee = new Weapon("épée", 12, 5);
+        Item hache = new Weapon("hache", 14, 6);
+        Item dague = new Weapon("dague", 8, 3);
+        Item lance = new Weapon("lance", 10, 4);
 
-        Item cuir = new Armor("armure en cuir", 5, 4);
-        Item fer = new Armor("armure en fer", 10, 6);
-        Item or = new Armor("armure en or", 15, 8);
-        Item diamant = new Armor("armure en diamant", 20, 12);
+        Item cuir = new Armor("armure en cuir", 6, 2);
+        Item fer = new Armor("armure en fer", 12, 4);
+        Item or = new Armor("armure en or", 20, 8);
+        Item diamant = new Armor("armure en diamant", 30, 12);
         
         ArrayList<Item> obj_list = new ArrayList<Item>();
         obj_list.add(bandage);
