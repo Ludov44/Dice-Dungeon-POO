@@ -3,8 +3,14 @@ package Item;
 import Entity.Avatar;
 
 public class Armor extends Equippable{
-    public static final int itemType = 1;
+    public static final int itemType = 1; //entier qui represente le type de l'item 
 
+    /**
+     * Constructeur pour créer un objet qui est une armure
+     * @param name le nom de l'armure 
+     * @param price le prix de l'armure
+     * @param bonus le bonus de l'armure
+     */
     public Armor(String name, int price, int bonus){
         super(name, price, bonus);  
     }
