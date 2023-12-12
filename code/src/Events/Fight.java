@@ -8,23 +8,31 @@ import Entity.MonsterGenerator;
 import io.UserInput;
 
 public class Fight implements Event {
-    ArrayList<Monster> enemies;
-    private final static int id = 3;
+    ArrayList<Monster> enemies;                 // Les ennemis de ce combat.
+    private final static int id = 3;            // L'identifiant de Fight.
 
+    /**
+     * Constructeur de l'Event Fight
+     * @param nbRoom le numéro de la room actuelle.
+     */
     public Fight(int nbRoom)
     {
         this.enemies = new ArrayList<Monster>();
         this.fill(nbRoom);
     }
 
+    /**
+     * Remplit la liste d' ennemis de ce combat.
+     * @param nbRoom Le numéro de la room, pour ajuster la difficulté du combat.
+     */
     public void fill(int nbRoom)
     {
         int nbMonster;
-        if (nbRoom <= 3)                                         // les 3 premières salles
+        if (nbRoom <= 3)                                        // les 3 premières salles
         {
             nbMonster = 1;
         }
-        else if(nbRoom <= 6)                                     // les 3 salles suivantes
+        else if(nbRoom <= 6)                                    // les 3 salles suivantes
         {
             nbMonster = 2;
 
@@ -34,12 +42,12 @@ public class Fight implements Event {
             nbMonster = 3;
 
         }
-        else if(nbRoom <= 15)                                    // les 5 salles suivantes
+        else if(nbRoom <= 15)                                   // les 5 salles suivantes
         {
             nbMonster = 4;
 
         }
-        else { // non utilisé pour le moment
+        else {                                                  // non utilisé pour le moment
             nbMonster = 5;
         }
 
@@ -49,6 +57,11 @@ public class Fight implements Event {
     }
 
 
+    /**
+     * Méthode déclencheuse de l'Event Fight, implémentation de l'interface Event.
+     * Elle lance le combat jusqu'a la mort du joueur ou des ennemis.
+     * @param player Avatar de l'utilisateur pour la partie en cours
+     */
     @Override
     public void trigger(Avatar player) {
         Monster currentMonster;
@@ -112,7 +125,10 @@ public class Fight implements Event {
     }
 
 
-
+    /**
+     * Getter de l'id de Fight
+     * @return L'id de cet évenement
+     */
     @Override
     public int getId() {
         return Fight.id;

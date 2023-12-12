@@ -34,11 +34,21 @@ public class Merchant implements Event{
         }
     }
 
+
+    /**
+     * Getter de l'id de cet Event
+     * @return L'id de l'evenement Merchant
+     */
     @Override
     public int getId() {
         return id;
     }
 
+    /**
+     * Méthode déclencheuse de l'Event Merchant, implémentation de l'interface Event.
+     * Elle ajoute les items à la vitrine du marchand
+     * @param player Avatar de l'utilisateur pour la partie en cours
+     */
     @Override
     public void trigger(Avatar player) // TODO : pouvoir vendre des items
     {
