@@ -24,7 +24,7 @@ public class AutoHealingMonster extends Monster {
         double luck = Math.random();
         if (luck > 0.8) {
             this.setHP(this.getHP() + healingCapacity);
-            if (this.getHP() > this.getMaxHP()) {
+            if (this.getHP() + this.healingCapacity > this.getMaxHP()) {
                 this.setHP(this.getMaxHP());
             }
         }
@@ -32,7 +32,7 @@ public class AutoHealingMonster extends Monster {
    
     @Override
     public int getAttackPower() {
-        mayHeal();
+        this.mayHeal();
         return super.getAttackPower();
     }
 

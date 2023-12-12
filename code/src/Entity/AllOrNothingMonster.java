@@ -18,7 +18,7 @@ public class AllOrNothingMonster extends Monster {
    public int getAttackPower() {
       double luck = Math.random();
       if (luck > 0.5) {
-         return (int) (this.getbaseAttack() * 2.5);
+         return (int) (this.getbaseAttack() * 3);
       }
       else {
          return 0;

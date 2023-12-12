@@ -3,7 +3,7 @@ package Entity;
 public class ConfusedMonster extends Monster {
 
    /**
-    * Monstre qui à 40% de chance de manquer son attaque
+    * Monstre qui à 40% de chance de manquer son attaque, et se faisant de se blesser lui-même
     * @param HP
     * @param baseAttack
     * @param defense
@@ -26,7 +26,7 @@ public class ConfusedMonster extends Monster {
             this.setHP(0);
          } 
          else {
-            this.setHP(this.getHP() - (int) (this.getMaxHP() * 0.3));
+            this.setHP(this.getHP() - (int)(this.getMaxHP() * 0.3));
          }
          return 0;
       }

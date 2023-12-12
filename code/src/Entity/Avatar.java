@@ -45,8 +45,11 @@ public class Avatar extends Entity {
    public int getAttackPower() {
       double attackEfficiency = Math.random() % 0.2 - 0.1;
 
-      return (int) ((this.getbaseAttack() * (1 + attackEfficiency)));
+      return (int) ((this.getbaseAttack() * (1 + 9 * attackEfficiency)));
    }
+   /*
+   le personnage joué a une puissance d'attaque entre 100% et 190% de son attaque
+   */
 
    public Inventory getInv() {
       return stock;
