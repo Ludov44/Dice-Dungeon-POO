@@ -14,7 +14,6 @@ public class AutoHealingMonster extends Monster {;
      */
     public AutoHealingMonster (int HP, int baseAttack, int defense, String type, int reward, int healingCapacity) {
         super (HP, baseAttack, defense, type, reward);
-        this.luck = luck;
         this.healingCapacity = healingCapacity;
             
     }
@@ -32,6 +31,9 @@ public class AutoHealingMonster extends Monster {;
         }
    }
 
+    public int getLuck() {
+        return luck;
+    }
    
     @Override
     public int getAttackPower() {
