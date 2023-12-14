@@ -30,12 +30,12 @@ public class ItemGenerator{
     public static ArrayList<Item> generateObjects(){ // TODO : ajouter des items ? (exemple : amulettes pour up les HP)
         Item bandage = new HealthConsumable("Bandage", 4, 1);
         Item petiteH = new HealthConsumable("Petite potion de soin", 6, 2);
-        Item normaleH = new HealthConsumable("Potion de soin", 10, 5);
-        Item grosseH = new HealthConsumable("Grosse potion de soin", 20, 12);
+        Item normaleH = new HealthConsumable("Potion de soin", 10, 4);
+        Item grosseH = new HealthConsumable("Grosse potion de soin", 20, 10);
 
         Item petiteS = new StrenghtConsumable("Petite potion de force", 2, 3);
-        Item normaleS = new StrenghtConsumable("Potion de force", 4, 8);
-        Item grosseS = new StrenghtConsumable("Grosse potion de force", 10, 12);
+        Item normaleS = new StrenghtConsumable("Potion de force", 4, 5);
+        Item grosseS = new StrenghtConsumable("Grosse potion de force", 10, 10);
         
         Item epee = new Weapon("épée", 12, 5);
         Item hache = new Weapon("hache", 14, 6);

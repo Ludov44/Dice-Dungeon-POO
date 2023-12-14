@@ -54,13 +54,13 @@ public class Fight implements Event {
 
         for (int i = 0; i < nbMonster; i++) {
             enemies.add(MonsterGenerator.generate(nbRoom));
-            for(Monster m : enemies)
+            /*for(Monster m : enemies)
             {
                 m.setMaxHP((int)(m.getMaxHP() + nbRoom*1.5));
                 m.setHP(m.getMaxHP());
                 m.setbaseAttack(m.getbaseAttack() + nbRoom);
                 m.setDefense(m.getDefense() + (int)(nbRoom*0.8));
-            }
+            }*/
         }
     }
 

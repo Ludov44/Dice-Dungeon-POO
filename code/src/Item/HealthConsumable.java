@@ -11,16 +11,7 @@ public class HealthConsumable extends Consumable{
 
     @Override
     public void use(Avatar player){
-        if (this.getEffect() == 0){
-            throw new IllegalArgumentException("La potion est vide");
-        }
-        else{
-            player.setHP(player.getHP() + this.getEffect());
-            if(player.getHP() > player.getMaxHP()){
-                player.setHP(player.getMaxHP());;
-            }
-            this.setEffect(0);
-        }
+        player.setHP(player.getHP() + this.getEffect());
     }
 
     @Override

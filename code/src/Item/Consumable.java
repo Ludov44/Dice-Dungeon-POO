@@ -8,7 +8,7 @@ public abstract class Consumable implements Item{
 
     /**
      * Conctructeur de la classe Consumable
-     * @param name le nom du conssumable
+     * @param name le nom du consommable
      * @param effect l'entier qui représente la valeur qui va être ajouté a la stat modifiée par l'item
      * @param price  le prix de l'objet dans le magasin
      */

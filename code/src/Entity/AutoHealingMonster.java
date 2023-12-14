@@ -1,7 +1,7 @@
 package Entity;
 
 public class AutoHealingMonster extends Monster {;
-   private int healingCapacity;
+    private int healingCapacity;
 
     /**
      * Monstre qui a 20% de chance de se soigner d'un nombre de PV égal à healingCapacity
@@ -24,6 +24,7 @@ public class AutoHealingMonster extends Monster {;
     public void mayHeal() {
         double luck = Math.random();
         if (luck > 0.8) {
+            System.out.println(String.format("%s heals %d HP !", getName(), getHealingCapacity()));
             this.setHP(this.getHP() + healingCapacity);
             if (this.getHP() + this.healingCapacity > this.getMaxHP()) {
                 this.setHP(this.getMaxHP());
@@ -41,5 +42,9 @@ public class AutoHealingMonster extends Monster {;
     public String toString(){
         return super.toString() + " (Healer)";
     } 
+
+    public int getHealingCapacity() {
+        return healingCapacity;
+    }
 }
 

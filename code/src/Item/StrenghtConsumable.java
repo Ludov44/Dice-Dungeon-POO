@@ -18,13 +18,8 @@ public class StrenghtConsumable extends Consumable{
     
     @Override
     public void use(Avatar player){
-        if (this.getEffect() == 0){
-            throw new IllegalArgumentException("La potion est vide");
-        }
-        else{
-            player.setbaseAttack(player.getbaseAttack() + getEffect());
-            this.setEffect(0);
-        }
+        player.setbaseAttack(player.getbaseAttack() + getEffect());
+        player.setTempATK(getEffect());
     }
 
     /**

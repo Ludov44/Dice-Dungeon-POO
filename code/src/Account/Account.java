@@ -18,14 +18,14 @@ public class Account {
     }
 
     /**
-     * Création de l'avatar du joueur pour la partie, avec nom choisi, et amélioré selon le nombre de tokens récupéré lors de précédentes parties (+1 aux stats pour 10 tokens)
+     * Création de l'avatar du joueur pour la partie, avec nom choisi, et amélioré selon le nombre de tokens récupéré lors de précédentes parties (+1 aux stats pour 5 tokens)
      * @return Avatar du joueur
      */
     private Avatar createAvatar(){
         
         String name = UserInput.getInput("Nom du joueur ?");
         Inventory inv = new Inventory();
-        int tokenUpgrade = getTokens() / 10;
+        int tokenUpgrade = getTokens() / 5;
         Avatar player = new Avatar(name, 25 + tokenUpgrade, 4 + tokenUpgrade, 4 + tokenUpgrade, inv);
         System.out.println(player);
         return player;

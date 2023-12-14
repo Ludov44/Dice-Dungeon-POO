@@ -86,6 +86,8 @@ public class Game {
             }
 
         }
+
+        player.endConsumableEffects();
     }
 
     /**

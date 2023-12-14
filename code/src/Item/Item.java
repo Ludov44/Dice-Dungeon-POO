@@ -8,7 +8,6 @@ public interface Item {
      * @param joueur représente le joueur qui va utiliser l'item 
      */
     public void use(Avatar player);
-
     /**
      * Getter du prix d'un item
      * @return entier représentant le nom de l'item

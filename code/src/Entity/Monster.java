@@ -11,12 +11,10 @@ public class Monster extends Entity {
 
    @Override
    public int getAttackPower() {
-      double attackEfficiency = Math.random() % 0.2 - 0.1;                
-      return (int)(this.getbaseAttack() * (1 + 6 * attackEfficiency));     
+      double attackEfficiency = Math.random() % 0.2 - 0.05;                
+      return (int)(this.getbaseAttack() * (1 + 8 * attackEfficiency)); // les monstres de base ont une puissance d'attaque entre 80% et 160% de leur attaque de base
    }
-   /*
-   les monstres de bases ont une puissance d'attaque entre 100% et 160% de leurs attaques
-   */
+   
    public int getReward() {
       return reward;
    }

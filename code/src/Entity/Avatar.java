@@ -7,12 +7,16 @@ import io.UserInput;
 public class Avatar extends Entity {
    private int maxHP;
    private Inventory stock;
+   private int tempATK;
 
+   
    public Avatar (String name, int HP, int baseAttack, int defense, Inventory stock) {
       super(HP, baseAttack, defense, name);
       this.maxHP = HP;     //on initialise un Avatar avec tous ses PV
+      this.tempATK = 0;
       this.stock = stock;
    }
+
    public int getMaxHP() {
       return this.maxHP;
    }
@@ -43,16 +47,28 @@ public class Avatar extends Entity {
 
    @Override
    public int getAttackPower() {
-      double attackEfficiency = Math.random() % 0.2 - 0.1;
+      double attackEfficiency = Math.random() % 0.1 - 0.02;
 
-      return (int) ((this.getbaseAttack() * (1 + 9 * attackEfficiency)));
+      return (int) ((this.getbaseAttack() * (1 + 10 * attackEfficiency))); // le personnage joué a une puissance d'attaque entre 80% et 180% de son attaque de base
    }
-   /*
-   le personnage joué a une puissance d'attaque entre 100% et 190% de son attaque
-   */
+
+   /**
+    * Retire les effets des consommables utilisés sur le joueur (seulement pour l'attaque pour le moment)
+    */
+   public void endConsumableEffects(){
+      this.setbaseAttack(this.getbaseAttack() - this.getTempATK());
+   }
 
    public Inventory getInv() {
       return stock;
+   }
+
+   public int getTempATK() {
+      return tempATK;
+   }
+   
+   public void setTempATK(int tempATK) {
+      this.tempATK = tempATK;
    }
 
    @Override
